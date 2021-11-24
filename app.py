@@ -1,5 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-import os
+import os, time
 import firebase_admin
 from firebase_admin import credentials, db, storage
 from PIL import Image
@@ -14,8 +14,6 @@ firebase_admin.initialize_app(cred, {
     'storageBucket': 'jamma-comments-332612.appspot.com'
 })
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'},
-
 app = Flask(__name__)
 app.config.update(
     UPLOAD_FOLDER = 'static/temp',
@@ -26,17 +24,28 @@ app.config.update(
 @app.route("/")
 def home():
     if session.get('logged_in'):
-        return render_template("index.html")
+        profile_url = session.get('profile_url')
+        return render_template("index.html", profile_url=profile_url)
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
-        return redirect("login.html", lastuser=lastuser, message=message)
 
-@app.route
+        return render_template("login.html", lastuser=lastuser, message=message)
 
-def get_my_ip():
-    return jsonify({'ip': request.remote_addr}), 200
-        
+@app.route("/index")
+def index():
+    if session.get('logged_in'):
+        profile_url = session.get('profile_url')
+        return render_template("index.html", profile_url=profile_url)
+    else:
+        lastuser = session.get('lastuser')
+        message = session.get('message')
+
+        return render_template("login.html", lastuser=lastuser, message=message)
+
+
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -48,29 +57,34 @@ def login():
             if userAccounts[esername]["userpass"] == eserpass:
                 session['logged_in'] = True
                 session['lastuser'] = userAccounts[esername]['firstname']
-                print(f"username: {esername} with pass: {eserpass} LOGIN SUCCESS")
+
+                session['profile_url'] = userAccounts[esername]["profile_url"]
+                print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
                 return home()
 
             else: 
                 error = 'Incorrect Password'
-                print(f"username: {esername} with pass: {eserpass} INCORRECT PASSWORD")
+                print(f"username: '{esername}' with pass: '{eserpass}'\nINCORRECT PASSWORD")
                 return render_template("login.html", error=error)
 
         else:
             error = 'User does not exist'
-            print(f"username: {esername} with pass: {eserpass} USER DOES NOT EXIST!")
+            print(f"username: '{esername}' with pass: '{eserpass}'\nUSER DOES NOT EXIST!")
             return render_template("login.html", error=error)
 
     return render_template("login.html")
 
+
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
 
 @app.route("/preregister")
 def preregister():
     session['error'] = None
     return redirect(url_for('register'))
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -88,14 +102,28 @@ def register():
             if eserpicture.filename != "":
                 if eserpicture and allowed_file(eserpicture.filename):
                     filename = secure_filename(eserpicture.filename)
-                    eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
+
+                    split_filename = filename.split(".")
+                    split_filename[0] = esername
+                    split_filename[1] = 'png'
+                    newfilename = ('.'.join(split_filename))
+
+
                     image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     image.thumbnail((320,320))
-                    image.save('static/userpictures/{filename}')
+                    image.save(os.path.join("static/userpictures",newfilename))
+
+                    bucket = storage.bucket()
+                    blob = bucket.blob(os.path.join("userpictures/",newfilename))
+                    blob.upload_from_filename(os.path.join("static/userpictures",newfilename),content_type="image/png")
+                    blob.make_public()
+                    profile_url = (blob.public_url)
+
                 else:
-                    message_minor = "Invalid profile picture was uploaded"
+                    session['message_minor'] = "Invalid profile picture was uploaded"
         else:
-            message_minor = "Make sure to setup your profile picture sometime!"
+            session['message_minor'] = "Make sure to setup your profile picture sometime!"
 
 
         ref = db.reference('/userAccounts')
@@ -110,14 +138,15 @@ def register():
                         'usertel': esertel,
                         'username': esername,
                         'userpass': eserpass,
+                        'profile_url': profile_url,
                     }
                 })
-                message = "You're now registered, please login using your details"
-                return render_template("login.html",message=message,message_minor=message_minor)
+                session['message'] = "You're now registered " +esername+ " please login"
+                return redirect(url_for('index'))
             else:
                 error = "Passwords don't match, please repeat your password again"
         else:
-            error = "User is already registered, please log in instead"
+            error = "Username " + esername + " is already taken"
             return render_template("register.html", error=error)
 
     return render_template("register.html")
@@ -127,7 +156,11 @@ def register():
 def logout():
     session['logged_in'] = False
     session['message'] = 'Thank you for visiting our shop!'
-    return home()
+    return redirect(url_for('index'))
+
+
+
+
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
