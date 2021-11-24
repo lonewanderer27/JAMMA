@@ -59,52 +59,54 @@ firebase_admin.initialize_app(cred, {
 #         'userprofile': userprofile,
 #     }
 # })
-userAccounts = {
-'Adriane': {
-    'firstname': 'Adriane', 
-    'lastname': 'Puzon', 
-    'username': 'Adriane', 
-    'userpass': 'k0yk0y@503_JAMMA', 
-    'usertel': '+639983082814'}, 
+
+
+# userAccounts = {
+# 'Adriane': {
+#     'firstname': 'Adriane', 
+#     'lastname': 'Puzon', 
+#     'username': 'Adriane', 
+#     'userpass': 'k0yk0y@503_JAMMA', 
+#     'usertel': '+639983082814'}, 
     
-'JOY': {
-    'username': 'JOY', 
-    'userpass': 'k0yk0y@503_JOMMA', 
-    'userprofile': 'Noneyet'}, 
+# 'JOY': {
+#     'username': 'JOY', 
+#     'userpass': 'k0yk0y@503_JOMMA', 
+#     'userprofile': 'Noneyet'}, 
 
-'Joy': {
-    'username': 'Joy', 
-    'userpass': 'k0yk0y@503_JOMMA', 
-    'userprofile': 'Noneyet'}, 
+# 'Joy': {
+#     'username': 'Joy', 
+#     'userpass': 'k0yk0y@503_JOMMA', 
+#     'userprofile': 'Noneyet'}, 
 
-'aziaziazi': {
-    'firstname': 'Winston Earl', 
-    'lastname': 'Puzon', 
-    'username': 'aziaziazi', 
-    'userpass': 'k0yk0y@503_JAMMA3', 
-    'usertel': ''}, 
+# 'aziaziazi': {
+#     'firstname': 'Winston Earl', 
+#     'lastname': 'Puzon', 
+#     'username': 'aziaziazi', 
+#     'userpass': 'k0yk0y@503_JAMMA3', 
+#     'usertel': ''}, 
     
-'fredpuzon74': {
-    'firstname': 'Fred', 
-    'lastname': 'Puzon', 
-    'username': 'fredpuzon74', 
-    'userpass': 'k0yk0y@503_JAMMA2', 
-    'usertel': ''}, 
+# 'fredpuzon74': {
+#     'firstname': 'Fred', 
+#     'lastname': 'Puzon', 
+#     'username': 'fredpuzon74', 
+#     'userpass': 'k0yk0y@503_JAMMA2', 
+#     'usertel': ''}, 
 
-'keitarojay27': {
-    'firstname': 'Keitaro Jay', 
-    'lastname': 'Puzon', 
-    'username': 'keitarojay27', 
-    'userpass': 'k0yk0y@503_JAMMA2', 
-    'usertel': ''}
-}
+# 'keitarojay27': {
+#     'firstname': 'Keitaro Jay', 
+#     'lastname': 'Puzon', 
+#     'username': 'keitarojay27', 
+#     'userpass': 'k0yk0y@503_JAMMA2', 
+#     'usertel': ''}
+# }
 
-esername = 'Adriane'
-eserpass = 'k0yk0y@503_JAMMA'
+# esername = 'Adriane'
+# eserpass = 'k0yk0y@503_JAMMA'
 
-if esername in userAccounts:
-    print(userAccounts[esername]["username"])
-    print(userAccounts[esername]["userpass"])
+# if esername in userAccounts:
+#     print(userAccounts[esername]["username"])
+#     print(userAccounts[esername]["userpass"])
 
 # eserpass = 'k0yk0y@503_JAMMA'
 # esername = 'Adriane'
@@ -120,12 +122,22 @@ if esername in userAccounts:
     #     print("Weak password")
     # else:
     #     print("Strong password")
+# import os
 
-# image = Image.open('static/temp_userprofiles/PUZON.jpg')
+# filename = 'PUZON.jpg'
+# image = Image.open('static/temp/PUZON.jpg')
 # # image.show()
 # image.thumbnail((320,320))
-# image.save('static/userprofiles/PUZON.jpg')
+# image.save(os.path.join("static/temp",filename))
 
-# image = Image.open('static/userprofiles/PUZON.jpg')
+# filename = 'PUZON.jpg'
+# image = Image.open(os.path.join("static/userpictures",filename))
 # image.show()
 
+filename = 'userpictures/Adriane.png'
+file = 'static/userpictures/Adriane.png'
+format = "image/png"
+
+bucket = storage.bucket()
+blob = bucket.blob(filename)
+blob.upload_from_filename(file,content_type=format)
