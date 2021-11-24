@@ -1,0 +1,100 @@
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+        body {
+            background-color: #252a37;
+        }
+
+    </style>
+    <title>Login to JAMMA</title>
+{% endblock%}
+
+{% block body %}
+
+    <div class="w3-container w3-margin w3-hide-small w3-padding-48" style="vertical-align: middle;">
+        <div class="w3-container w3-round-xlarge w3-flat-midnight-blue" style="width:60%;margin:auto;">
+
+            <div class="w3-center"><br>
+            <img src="{{url_for('static', filename='slogan with motto.png')}}" alt="Avatar" style="width:35%" class="w3-margin">
+            </div>
+ 
+            <form class="w3-container" action="/login" method="post">
+
+                {% if error %}
+                    <div class="w3-panel w3-red w3-round-large w3-center">
+                        <h4>{{ error }}</h4>
+                    </div>
+                {% elif lastuser %}
+                    <div class="w3-panel w3-green w3-round-large w3-center">
+                        <h4>Welcome back {{ lastuser }}</h4>
+                    </div>
+                {% elif message %}
+                    <div class="w3-panel w3-green w3-round-large w3-center">
+                        <h4>{{ message }}</h4>
+                    </div>
+                {% elif message_minor %}
+                <div class="w3-panel w3-pale-green w3-round-large w3-center">
+                    <h4>{{ message_minor }}</h4>
+                </div>
+                {% endif %} 
+
+            <div class="w3-section">
+                <label><b>Username</b></label>
+                <input class="w3-input w3-border w3-margin-bottom w3-flat-midnight-blue" type="text" placeholder="Enter Username" name="username" required>
+                <label><b>Password</b></label>
+                <input class="w3-input w3-border w3-flat-midnight-blue" type="password" placeholder="Enter Password" name="userpass" required>
+                <button class="w3-button w3-block w3-yellow w3-section w3-padding w3-round-xxlarge" type="submit">Login</button>
+
+                <span class="w3-right w3-padding" style="position:relative"><a href="/preregister">Register if you don't have an account yet!</a></span>
+                <span class=" w3-right w3-padding" style="position:relative"><a href="#">Forgot password?</a></span>
+            </div>
+            </form>            
+            </div>
+
+        </div>
+    </div>
+
+    <div class="w3-hide-large w3-hide-medium w3-text-white" style="vertical-align: middle">
+
+            
+        
+            <div class="w3-center"><br>
+            <img src="{{url_for('static', filename='slogan with motto.png')}}" alt="Avatar" style="width:50%" class="w3-margin">
+            </div>
+
+            
+
+        
+            <form class="w3-container" action="/login" method="post">
+
+                {% if error %}
+                    <div class="w3-panel w3-red w3-round-large w3-center">
+                        <h5>{{ error }}</h5>
+                    </div>
+                {% elif lastuser %}
+                    <div class="w3-panel w3-green w3-round-large w3-center">
+                        <h5>Welcome back {{ lastuser }}, please log in!</h5>
+                    </div>
+                {% endif %} 
+
+                <div class="w3-section">
+                    <label><b>Username</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom w3-flat-midnight-blue" type="text" placeholder="Enter Username" name="username" required>
+                    <label><b>Password</b></label>
+                    <input class="w3-input w3-border w3-flat-midnight-blue" type="password" placeholder="Enter Password" name="userpass" required>
+                    <button class="w3-button w3-block w3-yellow w3-section w3-padding w3-round-xxlarge" type="submit">Login</button>
+
+                    <span class="w3-right w3-padding" style="position:relative"><a href="/preregister">Register if you don't have an account yet!</a></span>
+                    <span class=" w3-right w3-padding" style="position:relative"><a href="#">Forgot password?</a></span>
+                </div>
+            </form>            
+        </div>
+
+{% endblock %}
