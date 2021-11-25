@@ -28,7 +28,7 @@ def home():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com?"+"username="+username+"&profile_url="+profile_url
         print(jammaLink)
-        return render_template("index.html", jammaLink=jammaLink)
+        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url)
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
@@ -42,7 +42,7 @@ def index():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         print(jammaLink)
-        return render_template("index.html", jammaLink=jammaLink)
+        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url)
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
@@ -63,8 +63,8 @@ def login():
             if userAccounts[esername]["userpass"] == eserpass:
                 session['logged_in'] = True
                 session['lastuser'] = userAccounts[esername]['username']
+                session['profile_url'] = userAccounts[esername]['profile_url']
 
-                session['profile_url'] = userAccounts[esername]["profile_url"]
                 print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
                 return home()
 
@@ -179,5 +179,5 @@ def logout():
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     # Bind to PORT if defined, otherwise default to 5000.
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 4000))
     app.run(host='0.0.0.0', port=port, debug=True)
