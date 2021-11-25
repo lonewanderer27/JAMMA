@@ -581,5 +581,18 @@
             document.getElementById("Sidebar").style.display = "none";
             document.getElementById("overlay").style.display = "none";
         }
+
+        function unhideDisqus() {
+        var x = document.getElementById("jammaComments");
+        var y = document.getElementById("disqus_thread")
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } 
+        else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
     </script>
 {% endblock %}
