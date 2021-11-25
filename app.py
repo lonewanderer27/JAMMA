@@ -19,8 +19,6 @@ app.config.update(
     UPLOAD_FOLDER = 'static/temp',
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'},
     TESTING = True,
-    SESSION_COOKIE_SAMESITE = "None",
-    SESSION_COOKIE_SECURE= True,
 )
 
 @app.route("/", methods=['GET'])
