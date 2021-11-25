@@ -135,7 +135,7 @@ def register():
             session['message_minor'] = "Make sure to setup your profile picture sometime!"
 
 
-        if request.form.get('profile_url') == None:
+        if request.form.get('userpicture') == None:
             bucket = storage.bucket()
             blob = bucket.blob("userpictures/Default_Profile.png")
             blob.make_public()
