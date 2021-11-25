@@ -103,6 +103,7 @@ def register():
         eserpass2 = request.form['userpass2']
         esertel = request.form['usertel']
 
+
         if 'userpicture' in request.files:
             eserpicture = request.files['userpicture']
             if eserpicture.filename != "":
@@ -130,6 +131,13 @@ def register():
                     session['message_minor'] = "Invalid profile picture was uploaded"
         else:
             session['message_minor'] = "Make sure to setup your profile picture sometime!"
+
+
+        if request.form.get('profile_url') == None:
+            bucket = storage.bucket()
+            blob = bucket.blob("userpictures/Default_Profile.png")
+            blob.make_public()
+            profile_url = (blob.public_url) 
 
 
         ref = db.reference('/userAccounts')
@@ -172,4 +180,4 @@ if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
