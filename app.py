@@ -21,22 +21,28 @@ app.config.update(
     TESTING = True,
 )
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def home():
     if session.get('logged_in'):
+        username = session.get('lastuser')
         profile_url = session.get('profile_url')
-        return render_template("index.html", profile_url=profile_url)
+        jammaLink = "https://jammacomments.herokuapp.com?"+"username="+username+"&profile_url="+profile_url
+        print(jammaLink)
+        return render_template("index.html", jammaLink=jammaLink)
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
 
         return render_template("login.html", lastuser=lastuser, message=message)
 
-@app.route("/index")
+@app.route("/index", methods=['GET'])
 def index():
     if session.get('logged_in'):
+        username = session.get('lastuser')
         profile_url = session.get('profile_url')
-        return render_template("index.html", profile_url=profile_url)
+        jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
+        print(jammaLink)
+        return render_template("index.html", jammaLink=jammaLink)
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
@@ -56,7 +62,7 @@ def login():
         if esername in userAccounts:
             if userAccounts[esername]["userpass"] == eserpass:
                 session['logged_in'] = True
-                session['lastuser'] = userAccounts[esername]['firstname']
+                session['lastuser'] = userAccounts[esername]['username']
 
                 session['profile_url'] = userAccounts[esername]["profile_url"]
                 print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
@@ -162,6 +168,8 @@ def logout():
 
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(debug=True,host='0.0.0.0', port=4000)
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
