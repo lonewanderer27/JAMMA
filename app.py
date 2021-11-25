@@ -129,6 +129,8 @@ def register():
                     blob.make_public()
                     profile_url = (blob.public_url)
 
+
+
                 else:
                     session['message_minor'] = "Invalid profile picture was uploaded"
                     print(f"{esername} uploaded an invalid photo")
@@ -164,6 +166,8 @@ def register():
                 return redirect(url_for('index'))
             else:
                 error = "Passwords don't match, please repeat your password again"
+                return render_template("register.html", error=error)
+                
         else:
             error = "Username " + esername + " is already taken"
             return render_template("register.html", error=error)
