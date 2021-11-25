@@ -190,6 +190,369 @@
         <br>
         <h1 style="vertical-align: middle;color:white;">Login system works!</h1>
     </center>
+    
+    <!-- START OF THE MAIN WEBPAGE -->
+    <div id="content" style="padding-top:115px;">
+        <div class="w3-cell-row">
+
+            <div class="w3-container w3-cell w3-center w3-mobile">
+                <p style="font-size:5vw;color:white;" class="w3-hide-small">Best Sports Gadgets</p>
+                <p style="font-size:9.5vw;color:white;" class="w3-hide-medium w3-hide-large">Best Sports  Gadgets</p>
+                <button class="w3-btn w3-border-white w3-border w3-round-xxlarge w3-medium w3-padding-large" style="margin-bottom:50px;color:white">Shop Now</button>
+            </div>
+      
+      
+            <div class="w3-container w3-cell w3-mobile ">
+            <img src="{{url_for('static', filename='Best Sports Accessories.jpg')}}" alt="" width="100%" class="w3-round-xlarge">
+            </div>
+
+            
+        </div>
+
+        <br> <br>
+
+        <div class="w3-row">
+            <div class="w3-half w3-container">
+                <div class="w3-display-container">
+                    <img src="{{url_for('static', filename='Smartwatch Banner 2.jpg')}}" alt="" style="background-size:contain" width="100%" class="w3-round-xlarge">
+                    <p><span class="w3-tag w3-yellow w3-display-bottomleft w3-xlarge w3-round-xlarge">Best Smartwatch Collection</span></p>
+                </div>
+            </div>
+            <div class="w3-half w3-container">
+                <div class="w3-display-container">
+                    <img src="{{url_for('static', filename='Headphone Banner.jpg')}}" alt="" style="background-size:contain" width="100%" class="w3-round-xlarge">
+                    <p><span class="w3-tag w3-yellow w3-display-bottomleft w3-xlarge w3-round-xlarge">Headphones from Lamborghini</span></p>
+                </div>
+            </div>
+        </div>
+
+        <br> <br>
+
+        <!-- Brand Container -->
+        <div class=" w3-center w3-padding-64">
+            <!-- HR -->
+            <div class="w3-row">
+                <div class="w3-third w3-container">
+                  <hr>
+                </div>
+                <div class="w3-third w3-container">
+                    <p><span class="w3-tag w3-teal w3-large w3-round-xlarge">TRUSTED BY THESE BRANDS</span></p>
+                </div>
+                <div class="w3-third w3-container w3-hide-small">
+                  <hr>
+                </div>
+              </div>
+
+            <!-- Brand for large screens -->
+            <div class="w3-cell-row w3-hide-small w3-hide-medium">
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Aftershockz.png" alt="" class="brands">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Beats.png" alt="" class="brands">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/1more.png" alt="" class="brands">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Apple.png" alt="" class="brands">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Jabra.png" alt="" class="brands">
+                    </div>
+            </div>
+
+            <!-- Brand for medium to small screens -->
+            <div class="w3-cell-row w3-hide-large"> 
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Aftershockz.png" alt="" class="brands" style="width:50%">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/1more.png" alt="" class="brands" style="width:50%">
+                </div>
+
+            </div>
+            <div class="w3-cell-row w3-hide-large">
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Beats.png" alt="" class="brands" style="width:20%">
+                </div>
+
+                <div class="w3-container w3-cell w3-mobile w3-padding-large">
+                    <img src="/static/brand_logos/Apple.png" alt="" class="brands" style="width:20%">
+                </div>
+            </div>
+
+            <div class="w3-container w3-cell w3-mobile w3-padding-large w3-hide-large">
+                <img src="/static/brand_logos/Jabra.png" alt="" class="brands" style="width:30%">
+            </div>
+        </div>
+
+        <br> <br>
+
+        <!-- Best Sellers -->
+        <div class="w3-padding-64">
+
+            <!-- HR -->
+            <div class="w3-row w3-center">
+                <div class="w3-third w3-container">
+                <hr>
+                </div>
+                <div class="w3-third w3-container">
+                    <p><span class="w3-tag w3-teal w3-large w3-round-xlarge">OUR BEST SELLERS</span></p>
+                </div>
+                <div class="w3-third w3-container w3-hide-small">
+                <hr>
+                </div>
+            </div>
+
+            
+            <div class="w3-row w3-center">
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/best_selling/AfterShokz Aeropex.png" alt="Alps" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Aftershockz Aeropex</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/best_selling/Airpods Pro.png" alt="Alps" style="width:100%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Airpods Pro</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/best_selling/Powerbeats Pro.png" alt="Alps" style="width:100%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Powerbeats Pro</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="w3-row">
+
+                <div class="w3-half w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
+                        <img src="/static/best_selling/Jabra Elite Active 75t.png" alt="Alps" style="width:80%">
+                        <div class="w3-container w3-center">
+                            <a href="Jabra Elite Active 75t.html">
+                                <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Jabra Elite Active 75t</span></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-half w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
+                        <img src="/static/best_selling/Jaybird Vista.png" alt="Alps" style="width:80%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Jaybird Vista</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <br> <br>
+
+        <!-- New Products -->
+        <div class="w3-padding-64">
+
+            <!-- HR -->
+            <div class="w3-row w3-center">
+                <div class="w3-third w3-container">
+                <hr>
+                </div>
+                <div class="w3-third w3-container">
+                    <p><span class="w3-tag w3-teal w3-large w3-round-xlarge">NEW PRODUCTS</span></p>
+                </div>
+                <div class="w3-third w3-container w3-hide-small">
+                <hr>
+                </div>
+            </div>
+
+
+            <div class="w3-row w3-center">
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/new_products/Apple Watch Series 6.png" alt="Alps" style="width:80%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Apple Watch Series 6</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/new_products/Coros Pace 2.png" alt="Alps" style="width:80%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Coros Pace 2</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+                <div class="w3-third w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
+                        <img src="/static/new_products/Garmin Forerunner 245 Music.png" alt="Alps" style="width:80%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Garmin Forerunner 245 Music</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="w3-row">
+
+                <div class="w3-half w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
+                        <img src="/static/new_products/Huawei GT 2e.png" alt="Alps" style="width:75%">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Huawei GT 2e</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-half w3-container w3-mobile w3-padding-24">
+                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
+                        <img src="/static/new_products/Withings Steel HR.png" alt="Alps" style="width:45%;">
+                        <div class="w3-container w3-center">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Withings Stell HR</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br> <br> <br> 
+
+        <!-- Testimonials -->
+        <div style="background-color: black;" class="testimonials w3-padding-64">
+            <div class="w3-container w3-center w3-padding-32">
+                <div class="w3-tag  w3-xlarge " style="padding:3px;">
+                    <div class="w3-container w3-round w3-round w3-border w3-border-white w3-round-xxlarge w3-margin"> 
+                      Testimonials
+                    </div>
+                  </div>
+            </div>
+
+            <div class="w3-row w3-container">
+                <br>
+                <div class="w3-third w3-container">
+                    <div class="w3-card-4">
+                        
+                        <div class="w3-container w3-border w3-round-xxlarge w3-black">
+                          <p>"I would like to say thank you so much PA-JAMMA!! It was a fast and easy transaction and received the item before 24 hours!! Btw I'm from Davao! I'm very satisfied and happy with my Garmin Forerunner 245 Music!! 10 out of 10 customer service !!!"</p>
+                        </div>
+                        
+                        <footer class="w3-container w3-right">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Van Ion Olsula</span></p>
+                        </footer>
+                        
+                    </div>
+                </div>
+                  
+                <div class="w3-third w3-container">
+                    <br>
+
+                    <div class="w3-card-4">
+                        
+                        <div class="w3-container w3-border w3-round-xxlarge w3-black">
+                          <p>"Genuine product + 101% excellent customer service + trustworthy = satisfied customer"</p>
+                        </div>
+                        
+                        <footer class="w3-container w3-right">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Angel Escale</span></p>
+                        </footer>
+                        
+                    </div>
+                </div>
+
+                <div class="w3-third w3-container">
+                    <br>
+
+                    <div class="w3-card-4">
+                        
+                        <div class="w3-container w3-border w3-round-xxlarge w3-black">
+                          <p>"Super fast transaction and took great care of shipping the item. A true asset in the online shopping world. Will definitely buy from them again soon. More power!"</p>
+                        </div>
+                        
+                        <footer class="w3-container w3-right">
+                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Liz Resurrecion</span></p>
+                        </footer>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <br> <br> <br> <br> <br> 
+
+            <div class="w3-container w3-row w3-center w3-padding-32 w3-opacity-min">
+                <abbr title="Click to switch to JAMMA Comments">
+                <div class="w3-tag  w3-half w3-xlarge " style="padding:3px;">
+                    <div class="w3-container w3-round w3-round w3-border w3-border-white w3-round-xxlarge w3-margin w3-hover-pale-green" onclick="unhideDisqus()"> 
+                        JAMMA Comments
+                    </div>
+                  </div>
+                </abbr>
+                <abbr title="Click to switch to Disqus!">
+                <div class="w3-tag  w3-half w3-xlarge " style="padding:3px;">
+                    <div class="w3-container w3-round w3-round w3-border w3-border-white w3-round-xxlarge w3-margin w3-hover-pale-green" onclick="unhideDisqus()"> 
+                        Disqus!
+                    </div>
+                  </div>
+                </abbr>
+                  
+            </div>
+            
+            <div class="w3-container w3-center">
+                <iframe src="https://jammacomments.herokuapp.com/" width="100%" height="2000px" title="JAMMA Comments" id="jammaComments" style="background-color: white;"></iframe>
+
+                <div id="disqus_thread" style="display:none;" class="w3-center w3-padding-top-24"></div>
+
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://jamma.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+            
+            
+
+
+        </div>
+    </div>
 
 {% endblock %}
 
