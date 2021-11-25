@@ -32,8 +32,9 @@ def home():
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
+        message_minor = session.get('message_minor')
 
-        return render_template("login.html", lastuser=lastuser, message=message)
+        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
 
 @app.route("/index", methods=['GET'])
 def index():
@@ -46,8 +47,9 @@ def index():
     else:
         lastuser = session.get('lastuser')
         message = session.get('message')
+        message_minor = session.get('message_minor')
 
-        return render_template("login.html", lastuser=lastuser, message=message)
+        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
 
 
 
@@ -129,11 +131,14 @@ def register():
 
                 else:
                     session['message_minor'] = "Invalid profile picture was uploaded"
+                    print(f"{esername} uploaded an invalid photo")
+
         else:
             session['message_minor'] = "Make sure to setup your profile picture sometime!"
+            print(f"{esername} did not upload any photo")
 
 
-        if request.form.get('userpicture') == None:
+        if 'userpicture' not in request.files:
             bucket = storage.bucket()
             blob = bucket.blob("userpictures/Default_Profile.png")
             blob.make_public()
