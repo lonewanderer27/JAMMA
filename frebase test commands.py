@@ -134,10 +134,94 @@ firebase_admin.initialize_app(cred, {
 # image = Image.open(os.path.join("static/userpictures",filename))
 # image.show()
 
-filename = 'userpictures/Adriane.png'
-file = 'static/userpictures/Adriane.png'
-format = "image/png"
+# filename = 'userpictures/Adriane.png'
+# file = 'static/userpictures/Adriane.png'
+# format = "image/png"
 
-bucket = storage.bucket()
-blob = bucket.blob(filename)
-blob.upload_from_filename(file,content_type=format)
+# bucket = storage.bucket()
+# blob = bucket.blob(filename)
+# blob.upload_from_filename(file,content_type=format)
+
+messages = {
+    "-Mp28J7ILF9hDw4XWH_8" : {
+        "body" : "eyyy eyyy eeeeeeeeeeeeeeeeeey ",
+        "deleted" : "True",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 23:37:34",
+        "userEmail" : "",
+        "userName" : "jay",
+        "userTel" : ""
+    },
+    "-Mp29Qz70apyiMebtnd8" : {
+        "body" : "This is going to be the final test! ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 23:42:28",
+        "userEmail" : "",
+        "userName" : "jay",
+        "userTel" : ""
+    },
+    "-Mp29YgkbCNwJSJ-n5fk" : {
+        "body" : "Subarashi sugoi oniichaaaaaaaan ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 23:43:00",
+        "userEmail" : "",
+        "userName" : "Niko Niko Nikoniiiiiii",
+        "userTel" : ""
+    },
+    "-Mp29fiqOHoDiSWY_tEw" : {
+        "body" : "LOL! **** YOU! ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 23:43:33",
+        "userEmail" : "",
+        "userName" : "tessssstingggg againnn!!",
+        "userTel" : ""
+    },
+    "-Mp29msoKFfaw6HBDzN8" : {
+        "body" : "Wow ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 15:44:02",
+        "userEmail" : "",
+        "userName" : "Sir",
+        "userTel" : ""
+    },
+    "-Mp2A-Wfk2Fgx6Sc1Ufa" : {
+        "body" : "**** **** this **** website ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Default_Profile.png",
+        "timestamp" : "2021-11-21 15:44:58",
+        "userEmail" : "",
+        "userName" : "Seil Wiper",
+        "userTel" : ""
+    },
+    "-MpKm26SkLaT8x3JOL2_" : {
+        "body" : "THE PROFILE PICTURE FINALLY WORKS! ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Adriane.png",
+        "timestamp" : "2021-11-25T06:28:42.511088",
+        "userName" : "Adriane"
+    },
+    "-MpL-D6Xx10sqvL4S8TE" : {
+        "body" : "Testing if the profile picture works",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Adriane.png",
+        "timestamp" : "2021-11-25T07:30:37.609412",
+        "userName" : "Adriane"
+    },
+    "-MpMV6363roYFtDiFvYB" : {
+        "body" : "THE COMMENT SECTION IS NOW WORKING PROPERLY OMG! ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/Adriane.png",
+        "timestamp" : "2021-11-25T14:29:34.514201",
+        "userName" : "Adriane"
+    },
+    "-MpMY4TDKH1XOQmn0Ly0" : {
+        "body" : "New feature: When logged in with JAMMA, you don't have to log in separately in JAMMA Comments, it automatically logs you in so you can participate right away! ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/boombox.png",
+        "timestamp" : "2021-11-25T14:42:34.396235",
+        "userName" : "boombox"
+    },
+    "-MpMYFeSo7VxsQM5yFWj" : {
+        "body" : "And oh! Haven't I mentioned that your comment appears right away after you submitted it? Pretty amazing huh? ",
+        "profile_url" : "https://storage.googleapis.com/jamma-comments-332612.appspot.com/userpictures/boombox.png",
+        "timestamp" : "2021-11-25T14:43:20.263429",
+        "userName" : "boombox"
+    }
+}
+
+
