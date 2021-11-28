@@ -6,7 +6,7 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 
 # Fetch the service account key JSON file contents
-cred = credentials.Certificate('jamma-comments-332612-firebase-adminsdk-9x87k-8d8cbd899a.json')
+cred = credentials.Certificate('jamma-firebase-adminsdk-credentials.json')
 
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(cred, {
