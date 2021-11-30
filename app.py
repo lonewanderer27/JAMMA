@@ -27,14 +27,13 @@ def home():
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com?"+"username="+username+"&profile_url="+profile_url
+        active_category = 'featured'
         print(jammaLink)
-        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url)
+        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
     else:
-        lastuser = session.get('lastuser')
-        message = session.get('message')
-        message_minor = session.get('message_minor')
+        return redirect(url_for('login'))
 
-        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
+
 
 @app.route("/index", methods=['GET'])
 def index():
@@ -42,45 +41,112 @@ def index():
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
-        print(jammaLink)
-        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url)
+        active_category = 'featured'
+        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
     else:
-        lastuser = session.get('lastuser')
-        message = session.get('message')
-        message_minor = session.get('message_minor')
+        return redirect(url_for('login'))
 
-        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
 
+
+@app.route("/allproducts", methods=['GET', 'POST'])
+def allproducts():
+    if session.get('logged_in'):
+        if request.method == "POST":
+            pass
+        username = session.get('lastuser')
+        profile_url = session.get('profile_url')
+        jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
+        active_category = 'allproducts'
+        return render_template("allproducts.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+
+    else:
+        return redirect(url_for('login'))
+    
+
+
+@app.route("/smartwatch", methods=['GET', 'POST'])
+def smartwatch():
+    if session.get('logged_in'):
+        if request.method == "POST":
+            pass
+        username = session.get('lastuser')
+        profile_url = session.get('profile_url')
+        jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
+        active_category = 'smartwatch'
+        return render_template("smartwatch.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+
+    else:
+        return redirect(url_for('login'))
+
+
+
+@app.route("/headphone", methods=['GET', 'POST'])
+def headphone():
+    if session.get('logged_in'):
+        if request.method == "POST":
+            pass
+        username = session.get('lastuser')
+        profile_url = session.get('profile_url')
+        jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
+        active_category = 'headphone'
+        return render_template("headphone.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+
+    else:
+        return redirect(url_for('login'))
+
+
+
+@app.route("/about", methods=['GET', 'POST'])
+def about():
+    if session.get('logged_in'):
+        if request.method == "POST":
+            pass
+        username = session.get('lastuser')
+        profile_url = session.get('profile_url')
+        jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
+        active_category = 'about'
+        return render_template("about.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+
+    else:
+        return redirect(url_for('login'))
 
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == "POST":
-        esername = request.form['username']
-        eserpass = request.form['userpass']
-        ref = db.reference('/userAccounts')
-        userAccounts = ref.get()
-        if esername in userAccounts:
-            if userAccounts[esername]["userpass"] == eserpass:
-                session['logged_in'] = True
-                session['lastuser'] = userAccounts[esername]['username']
-                session['profile_url'] = userAccounts[esername]['profile_url']
+    if session.get('logged_in'):
+        return redirect(url_for('index'))
+    else:
+        lastuser = session.get('lastuser')
+        message = session.get('message')
+        message_minor = session.get('message_minor')
+        if request.method == "POST":
+            esername = request.form['username']
+            eserpass = request.form['userpass']
+            ref = db.reference('/userAccounts')
+            userAccounts = ref.get()
+            if esername in userAccounts:
+                if userAccounts[esername]["userpass"] == eserpass:
+                    session['logged_in'] = True
+                    session['lastuser'] = userAccounts[esername]['username']
+                    session['profile_url'] = userAccounts[esername]['profile_url']
 
-                print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
-                return home()
+                    print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
+                    return redirect(url_for('index'))
 
-            else: 
-                error = 'Incorrect Password'
-                print(f"username: '{esername}' with pass: '{eserpass}'\nINCORRECT PASSWORD")
+                else: 
+                    error = 'Incorrect Password'
+                    print(f"username: '{esername}' with pass: '{eserpass}'\nINCORRECT PASSWORD")
+                    return render_template("login.html", error=error)
+
+            else:
+                error = 'User does not exist'
+                print(f"username: '{esername}' with pass: '{eserpass}'\nUSER DOES NOT EXIST!")
                 return render_template("login.html", error=error)
 
-        else:
-            error = 'User does not exist'
-            print(f"username: '{esername}' with pass: '{eserpass}'\nUSER DOES NOT EXIST!")
-            return render_template("login.html", error=error)
+        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
+        
 
-    return render_template("login.html")
 
 
 def allowed_file(filename):
@@ -88,10 +154,12 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
+
 @app.route("/preregister")
 def preregister():
     session['error'] = None
     return redirect(url_for('register'))
+
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -164,6 +232,7 @@ def register():
                 })
                 session['message'] = "You're now registered " +esername+ " please login"
                 return redirect(url_for('index'))
+
             else:
                 error = "Passwords don't match, please repeat your password again"
                 return render_template("register.html", error=error)
@@ -175,10 +244,10 @@ def register():
     return render_template("register.html")
 
 
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    session['message'] = 'Thank you for visiting our shop!'
     return redirect(url_for('index'))
 
 
