@@ -1,0 +1,30 @@
+
+body {
+    background-color: #252a37;
+}
+
+a {
+    text-decoration: none;
+}
+
+.Sidebar_text {
+    color: white; 
+    font-family: Abel;
+    padding-left:15px;
+}
+
+.Sidebar_text_active {
+    color: #fef668;
+}
+
+.Sidebar_text_active:hover {
+    color:white;
+}
+
+.Sidebar_text:hover {
+    color: #fef668;
+}
+
+.top-bar, .w3-sidebar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.100);
+}
