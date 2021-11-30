@@ -28,19 +28,19 @@
             <form class="w3-container" action="/login" method="post">
 
                 {% if error %}
-                    <div class="w3-panel w3-red w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-red w3-round-large w3-center w3-text-red">
                         <h4>{{ error }}</h4>
                     </div>
                 {% elif message %}
-                    <div class="w3-panel w3-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-green w3-round-large w3-center w3-text-green">
                         <h4>{{ message }}</h4>
                     </div>
                 {% elif message_minor %}
-                    <div class="w3-panel w3-pale-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-pale-green w3-round-large w3-center w3-text-green">
                         <h4>{{ message_minor }}</h4>
                     </div>
                 {% elif lastuser %}
-                    <div class="w3-panel w3-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-green w3-round-large w3-center w3-text-green">
                         <h4>Welcome back {{ lastuser }}</h4>
                     </div>
                 {% endif %} 
@@ -75,19 +75,19 @@
             <form class="w3-container" action="/login" method="post">
 
                 {% if error %}
-                    <div class="w3-panel w3-red w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-red w3-round-large w3-center w3-text-red">
                         <h4>{{ error }}</h4>
                     </div>
                 {% elif message %}
-                    <div class="w3-panel w3-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-green w3-round-large w3-center w3-text-green">
                         <h4>{{ message }}</h4>
                     </div>
                 {% elif message_minor %}
-                    <div class="w3-panel w3-pale-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-pale-green w3-round-large w3-center w3-text-green">
                         <h4>{{ message_minor }}</h4>
                     </div>
                 {% elif lastuser %}
-                    <div class="w3-panel w3-green w3-round-large w3-center">
+                    <div class="w3-panel w3-border w3-border-green w3-round-large w3-center w3-text-green">
                         <h4>Welcome back {{ lastuser }}</h4>
                     </div>
                 {% endif %} 
@@ -105,4 +105,8 @@
             </form>            
         </div>
 
+{% endblock %}
+
+{% block javascript %}
+        
 {% endblock %}

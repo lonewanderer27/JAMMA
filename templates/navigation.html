@@ -1,0 +1,166 @@
+{% block body %}
+    <!-- Top Bar for Wide Screen -->
+    <div class="w3-row w3-hide-medium w3-hide-small w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
+        <div class="w3-quarter w3-container">
+            <img src="{{url_for('static', filename='Logo Only.png')}}" height="55px" alt="" onclick="sidebar_Open()" id="Logo">
+
+        </div>
+
+        <div class="w3-half w3-container w3-center">
+          <a href="playground.html"><img src="{{url_for('static', filename='slogan with motto.png')}}" height="60px" alt="" id="Slogan"></a>
+        </div>
+
+        <div class="w3-rest w3-container w3-right">
+            {% if profile_url %}
+                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-round-xxlarge">
+            {% else %}
+                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px">
+            {% endif %}
+        </div>
+
+        <div class="w3-rest w3-container w3-right">
+            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px">
+        </div>
+
+    </div>
+
+    <!-- Top Bar for Medium Screen -->
+    <div class="w3-row w3-hide-large w3-hide-small w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
+        <div class="w3-twothird w3-container">
+            <img src="{{url_for('static', filename='Logo Only.png')}}" height="55px" alt="" class="w3-left" onclick="sidebar_Open()" id="Logo">
+            <img src="{{url_for('static', filename='slogan with motto.png')}}" height="60px" alt="" class="w3-right w3-margin-right" id="Slogan">
+            
+        </div>
+
+        <div class="w3-rest w3-container">
+            {% if profile_url %}
+                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
+            {% else %}
+                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right">
+            {% endif %}
+            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
+            
+        </div>
+    </div>
+
+    <!-- Top Bar for Small Screen -->
+    <div class="w3-row w3-hide-large w3-hide-medium w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
+        <div class="w3-container">
+            <img src="{{url_for('static', filename='Logo Only.png')}}" height="55px" alt="" class="w3-left" onclick="sidebar_Open()" id="Logo">
+
+            {% if profile_url %}
+                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
+            {% else %}
+                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right">
+            {% endif %}
+            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;padding-top:25px;background:#252a37" id="Sidebar">
+        <a onclick="sidebar_Close()" class="w3-bar-item">
+            <img src="{{url_for('static', filename='0 Menu Expanded.png')}}" alt="" width="25px" style="margin-left:14px">
+            <img src="{{url_for('static', filename='slogan with motto.png')}}" height="30px" alt="" class="w3-left w3-margin-left w3-hide-large w3-hide-medium">
+        </a>
+        <br> <br>
+        <a href="{{ url_for('index') }}" class="w3-bar-item ">
+            <table class="w3-round-xlarge">
+                <tr>
+                    {% if active_category == 'featured' %}
+                    <td><img src="{{url_for('static', filename='1 Featured Product -s.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text Sidebar_text_active">Featured</h2></td>
+                    {% else %}
+                    <td><img src="{{url_for('static', filename='1 Featured Product.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text">Featured</h2></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </a>
+        <a href="{{ url_for('allproducts') }}" class="w3-bar-item">
+            <table class="w3-round-xlarge">
+                <tr>
+                    {% if active_category == 'allproducts' %}
+                    <td><img src="{{url_for('static', filename='2 All Products -s.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text Sidebar_text_active">All Products</h2></td>
+                    {% else %}
+                    <td><img src="{{url_for('static', filename='2 All Products.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text">All Products</h2></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </a>
+        <a href="{{ url_for('smartwatch') }}" class="w3-bar-item">
+            
+            <table class="w3-round-xlarge">
+                <tr>
+                    {% if active_category == 'smartwatch' %}
+                        <td><img src="{{url_for('static', filename='3 Smartwatch icon -s.png')}}" alt="" width="50px"></td>
+                        <td><h3  class="Sidebar_text Sidebar_text_active">Smartwatch</h2></td>
+                    {% else %}
+                        <td><img src="{{url_for('static', filename='3 Smartwatch icon.png')}}" alt="" width="50px"></td>
+                        <td><h3  class="Sidebar_text">Smartwatch</h2></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </a>
+        <a href="{{ url_for('headphone') }}" class="w3-bar-item">
+            
+            <table class="w3-round-xlarge">
+                <tr>
+                    {% if active_category == 'headphone' %}
+                    <td><img src="{{url_for('static', filename='4 Headphone Icon -s.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text Sidebar_text_active"> Headphone</h2></td>
+                    {% else %}
+                    <td><img src="{{url_for('static', filename='4 Headphone Icon.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text"> Headphone</h2></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </a>
+        <a href="{{ url_for('about') }}" class="w3-bar-item w3-bottom w3-margin-bottom">
+            
+            <table class="w3-round-xlarge">
+                <tr>
+                    {% if active_category == 'about' %}
+                    <td><img src="{{url_for('static', filename='5 About -s.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text Sidebar_text_active">About</h2></td>
+                    {% else %}
+                    <td><img src="{{url_for('static', filename='5 About.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text">About</h2></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="w3-overlay w3-animate-opacity" onclick="sidebar_Close()" style="cursor:pointer;margin-left:230px;" id="overlay"></div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function openLogin() {
+            document.getElementById('loginModal').style.display='block';
+            document.getElementById('Slogan').style.display='none'
+
+        }
+
+        function closeLogin() {
+            document.getElementById('loginModal').style.display='none'
+            document.getElementById('Slogan').style.display=''
+        }
+
+        /* Script of the Sidebar and Overlay */
+        function sidebar_Open() {
+                document.getElementById("Sidebar").style.width = "230px";
+                document.getElementById("Sidebar").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+        }
+
+        function sidebar_Close() {
+            document.getElementById("Sidebar").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+{% endblock %}
