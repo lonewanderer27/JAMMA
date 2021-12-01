@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import logging
 
+
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('jamma-firebase-adminsdk-credentials.json')
 
@@ -102,17 +103,17 @@ def smartwatch():
 
 
 
-@app.route("/headphone", methods=['GET', 'POST'])
-def headphone():
+@app.route("/earphone", methods=['GET', 'POST'])
+def earphone():
     if session.get('logged_in'):
         if request.method == "POST":
             pass
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
-        active_category = 'headphone'
+        active_category = 'earphone'
         return render_template(
-            "headphone.html", 
+            "earphone.html", 
             jammaLink=jammaLink, 
             username=username, 
             profile_url=profile_url, 
@@ -305,8 +306,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-
-
+import admin_routes
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)

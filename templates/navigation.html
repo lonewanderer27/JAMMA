@@ -104,16 +104,16 @@
                 </tr>
             </table>
         </a>
-        <a href="{{ url_for('headphone') }}" class="w3-bar-item">
+        <a href="{{ url_for('earphone') }}" class="w3-bar-item">
             
             <table class="w3-round-xlarge">
                 <tr>
-                    {% if active_category == 'headphone' %}
-                    <td><img src="{{url_for('static', filename='4 Headphone Icon -s.png')}}" alt="" width="50px"></td>
-                    <td><h3  class="Sidebar_text Sidebar_text_active"> Headphone</h2></td>
+                    {% if active_category == 'earphone' %}
+                    <td><img src="{{url_for('static', filename='4 Earphone Icon -s.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text Sidebar_text_active"> Earphone</h2></td>
                     {% else %}
-                    <td><img src="{{url_for('static', filename='4 Headphone Icon.png')}}" alt="" width="50px"></td>
-                    <td><h3  class="Sidebar_text"> Headphone</h2></td>
+                    <td><img src="{{url_for('static', filename='4 Earphone Icon.png')}}" alt="" width="50px"></td>
+                    <td><h3  class="Sidebar_text"> Earphone</h2></td>
                     {% endif %}
                 </tr>
             </table>
