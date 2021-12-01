@@ -4,6 +4,8 @@ import firebase_admin
 from firebase_admin import credentials, db, storage
 from PIL import Image
 from werkzeug.utils import secure_filename
+from datetime import datetime
+import logging
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('jamma-firebase-adminsdk-credentials.json')
@@ -29,7 +31,12 @@ def home():
         jammaLink = "https://jammacomments.herokuapp.com?"+"username="+username+"&profile_url="+profile_url
         active_category = 'featured'
         print(jammaLink)
-        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "index.html", 
+            jammaLink=jammaLink, 
+            username=username, 
+            profile_url=profile_url, 
+            active_category=active_category)
     else:
         return redirect(url_for('login'))
 
@@ -42,7 +49,12 @@ def index():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'featured'
-        return render_template("index.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "index.html", 
+        jammaLink=jammaLink, 
+        username=username, 
+        profile_url=profile_url, 
+        active_category=active_category)
     else:
         return redirect(url_for('login'))
 
@@ -57,7 +69,12 @@ def allproducts():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'allproducts'
-        return render_template("allproducts.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "allproducts.html", 
+            jammaLink=jammaLink, 
+            username=username, 
+            profile_url=profile_url, 
+            active_category=active_category)
 
     else:
         return redirect(url_for('login'))
@@ -73,7 +90,12 @@ def smartwatch():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'smartwatch'
-        return render_template("smartwatch.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "smartwatch.html", 
+            jammaLink=jammaLink, 
+            username=username, 
+            profile_url=profile_url, 
+            active_category=active_category)
 
     else:
         return redirect(url_for('login'))
@@ -89,7 +111,12 @@ def headphone():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'headphone'
-        return render_template("headphone.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "headphone.html", 
+            jammaLink=jammaLink, 
+            username=username, 
+            profile_url=profile_url, 
+            active_category=active_category)
 
     else:
         return redirect(url_for('login'))
@@ -105,7 +132,12 @@ def about():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'about'
-        return render_template("about.html", jammaLink=jammaLink, username=username, profile_url=profile_url, active_category=active_category)
+        return render_template(
+            "about.html", 
+            jammaLink=jammaLink, 
+            username=username, 
+            profile_url=profile_url, 
+            active_category=active_category)
 
     else:
         return redirect(url_for('login'))
@@ -131,20 +163,23 @@ def login():
                     session['lastuser'] = userAccounts[esername]['username']
                     session['profile_url'] = userAccounts[esername]['profile_url']
 
-                    print(f"username: '{esername}' with pass: '{eserpass}'\nLOGIN SUCCESS")
+                    visitor_ip_address = request.remote_addr
+                    logging.info(f"LOGIN SUCCESS    username: {esername}   password: {eserpass}    IP Address: {visitor_ip_address}")
+
                     return redirect(url_for('index'))
 
                 else: 
                     error = 'Incorrect Password'
-                    print(f"username: '{esername}' with pass: '{eserpass}'\nINCORRECT PASSWORD")
+                    logging.warning(f"INCORRECT PASSWORD    username: {esername}   password: {eserpass}")
                     return render_template("login.html", error=error)
 
             else:
                 error = 'User does not exist'
-                print(f"username: '{esername}' with pass: '{eserpass}'\nUSER DOES NOT EXIST!")
+                logging.warning(f"USER DOES NOT EXIST    username: {esername}   password: {eserpass}")
                 return render_template("login.html", error=error)
 
-        return render_template("login.html", lastuser=lastuser, message=message, message_minor=message_minor)
+        return render_template(
+            "login.html", lastuser=lastuser, message=message, message_minor=message_minor)
         
 
 
@@ -162,6 +197,22 @@ def preregister():
 
 
 
+def empty_profile_url():
+    bucket = storage.bucket()
+    blob = bucket.blob("userpictures/Default_Profile.png")
+    blob.make_public()
+    profile_url = (blob.public_url)
+    return profile_url
+
+
+
+def currentDateTime():
+    now = datetime.now()
+    datetime_complete_string = now.strftime("%d/%m/%Y %H:%M:%S:%f")
+    return datetime_complete_string
+
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
@@ -176,43 +227,42 @@ def register():
 
         if 'userpicture' in request.files:
             eserpicture = request.files['userpicture']
-            if eserpicture.filename != "":
-                if eserpicture and allowed_file(eserpicture.filename):
-                    filename = secure_filename(eserpicture.filename)
-                    eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
+            if eserpicture and allowed_file(eserpicture.filename):
+                filename = secure_filename(eserpicture.filename)
+                eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
 
-                    split_filename = filename.split(".")
-                    split_filename[0] = esername
-                    split_filename[1] = 'png'
-                    newfilename = ('.'.join(split_filename))
-
-
-                    image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                    image.thumbnail((320,320))
-                    image.save(os.path.join("static/userpictures",newfilename))
-
-                    bucket = storage.bucket()
-                    blob = bucket.blob(os.path.join("userpictures/",newfilename))
-                    blob.upload_from_filename(os.path.join("static/userpictures",newfilename),content_type="image/png")
-                    blob.make_public()
-                    profile_url = (blob.public_url)
+                split_filename = filename.split(".")
+                split_filename[0] = esername
+                split_filename[1] = 'png'
+                newfilename = ('.'.join(split_filename))
 
 
+                image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                image.thumbnail((320,320))
+                image.save(os.path.join("static/userpictures",newfilename))
 
-                else:
-                    session['message_minor'] = "Invalid profile picture was uploaded"
-                    print(f"{esername} uploaded an invalid photo")
+                bucket = storage.bucket()
+                blob = bucket.blob(os.path.join("userpictures/",newfilename))
+                blob.upload_from_filename(os.path.join("static/userpictures",newfilename),content_type="image/png")
+                blob.make_public()
+                profile_url = (blob.public_url)
+                logging.info(f"{esername} successfully uploaded a profile picture")
+
+
+
+            else:
+                session['message_minor'] = "Invalid profile picture was uploaded"
+                profile_url = empty_profile_url()
+                logging.warning(f"{esername} uploaded an invalid picture")
 
         else:
             session['message_minor'] = "Make sure to setup your profile picture sometime!"
+            profile_url = empty_profile_url()
             print(f"{esername} did not upload any photo")
+            logging.warning(f"{esername} did not uploaded any photo")
 
 
-        if 'userpicture' not in request.files:
-            bucket = storage.bucket()
-            blob = bucket.blob("userpictures/Default_Profile.png")
-            blob.make_public()
-            profile_url = (blob.public_url) 
+        print("profile_url : "+profile_url)
 
 
         ref = db.reference('/userAccounts')
@@ -228,9 +278,13 @@ def register():
                         'username': esername,
                         'userpass': eserpass,
                         'profile_url': profile_url,
+                        'registerDate&Time': currentDateTime(),
+                        'ip': request.remote_addr
                     }
                 })
                 session['message'] = "You're now registered " +esername+ " please login"
+                visitor_ip_address = request.remote_addr
+                logging.info(f"REGISTRATION SUCCESS    username: {esername}   password: {eserpass}    IP Address: {visitor_ip_address}")
                 return redirect(url_for('index'))
 
             else:
