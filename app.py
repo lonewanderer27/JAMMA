@@ -70,12 +70,16 @@ def allproducts():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'allproducts'
+        ref = db.reference('/products')
+        products = ref.get()
         return render_template(
             "allproducts.html", 
             jammaLink=jammaLink, 
             username=username, 
             profile_url=profile_url, 
-            active_category=active_category)
+            active_category=active_category,
+            products=products,
+            )
 
     else:
         return redirect(url_for('login'))
@@ -91,12 +95,16 @@ def smartwatch():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'smartwatch'
+        ref = db.reference('/products')
+        products = ref.get()
         return render_template(
             "smartwatch.html", 
             jammaLink=jammaLink, 
             username=username, 
             profile_url=profile_url, 
-            active_category=active_category)
+            active_category=active_category,
+            products=products,
+            )
 
     else:
         return redirect(url_for('login'))
@@ -112,12 +120,16 @@ def earphone():
         profile_url = session.get('profile_url')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'earphone'
+        ref = db.reference('/products')
+        products = ref.get()
         return render_template(
             "earphone.html", 
             jammaLink=jammaLink, 
             username=username, 
             profile_url=profile_url, 
-            active_category=active_category)
+            active_category=active_category,
+            products=products,
+            )
 
     else:
         return redirect(url_for('login'))
