@@ -205,8 +205,11 @@ def allowed_file(filename):
 
 @app.route("/preregister")
 def preregister():
-    session['error'] = None
-    return redirect(url_for('register'))
+    if session.get('logged_in'):
+        return redirect(url_for('index'))
+    else:
+        session['error'] = None
+        return redirect(url_for('register'))
 
 
 
@@ -228,87 +231,90 @@ def currentDateTime():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    if request.method == "POST":
-        eserfname = request.form['fname']
-        eserlname = request.form['lname']
-        esername = request.form['username']
-        esermail = request.form['usermail']
-        eserpass = request.form['userpass']
-        eserpass2 = request.form['userpass2']
-        esertel = request.form['usertel']
+    if session.get('logged_in'):
+        return redirect(url_for('index'))
+    else:
+        if request.method == "POST":
+            eserfname = request.form['fname']
+            eserlname = request.form['lname']
+            esername = request.form['username']
+            esermail = request.form['usermail']
+            eserpass = request.form['userpass']
+            eserpass2 = request.form['userpass2']
+            esertel = request.form['usertel']
 
 
-        if 'userpicture' in request.files:
-            eserpicture = request.files['userpicture']
-            if eserpicture and allowed_file(eserpicture.filename):
-                filename = secure_filename(eserpicture.filename)
-                eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
+            if 'userpicture' in request.files:
+                eserpicture = request.files['userpicture']
+                if eserpicture and allowed_file(eserpicture.filename):
+                    filename = secure_filename(eserpicture.filename)
+                    eserpicture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
 
-                split_filename = filename.split(".")
-                split_filename[0] = esername
-                split_filename[1] = 'png'
-                newfilename = ('.'.join(split_filename))
-
-
-                image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                image.thumbnail((320,320))
-                image.save(os.path.join("static/userpictures",newfilename))
-
-                bucket = storage.bucket()
-                blob = bucket.blob(os.path.join("userpictures/",newfilename))
-                blob.upload_from_filename(os.path.join("static/userpictures",newfilename),content_type="image/png")
-                blob.make_public()
-                profile_url = (blob.public_url)
-                logging.info(f"{esername} successfully uploaded a profile picture")
+                    split_filename = filename.split(".")
+                    split_filename[0] = esername
+                    split_filename[1] = 'png'
+                    newfilename = ('.'.join(split_filename))
 
 
+                    image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    image.thumbnail((320,320))
+                    image.save(os.path.join("static/userpictures",newfilename))
+
+                    bucket = storage.bucket()
+                    blob = bucket.blob(os.path.join("userpictures/",newfilename))
+                    blob.upload_from_filename(os.path.join("static/userpictures",newfilename),content_type="image/png")
+                    blob.make_public()
+                    profile_url = (blob.public_url)
+                    logging.info(f"{esername} successfully uploaded a profile picture")
+
+
+
+                else:
+                    session['message_minor'] = "Invalid profile picture was uploaded"
+                    profile_url = empty_profile_url()
+                    logging.warning(f"{esername} uploaded an invalid picture")
 
             else:
-                session['message_minor'] = "Invalid profile picture was uploaded"
+                session['message_minor'] = "Make sure to setup your profile picture sometime!"
                 profile_url = empty_profile_url()
-                logging.warning(f"{esername} uploaded an invalid picture")
-
-        else:
-            session['message_minor'] = "Make sure to setup your profile picture sometime!"
-            profile_url = empty_profile_url()
-            print(f"{esername} did not upload any photo")
-            logging.warning(f"{esername} did not uploaded any photo")
+                print(f"{esername} did not upload any photo")
+                logging.warning(f"{esername} did not uploaded any photo")
 
 
-        print("profile_url : "+profile_url)
+            print("profile_url : "+profile_url)
 
 
-        ref = db.reference('/userAccounts')
-        userAccounts = ref.get()
-        if esername not in userAccounts:
-            if eserpass == eserpass2:
-                ref.update({
-                    esername: {
-                        'firstname': eserfname,
-                        'lastname': eserlname,
-                        'usermail': esermail,
-                        'usertel': esertel,
-                        'username': esername,
-                        'userpass': eserpass,
-                        'profile_url': profile_url,
-                        'registerDate&Time': currentDateTime(),
-                        'ip': request.remote_addr
-                    }
-                })
-                session['message'] = "You're now registered " +esername+ " please login"
-                visitor_ip_address = request.remote_addr
-                logging.info(f"REGISTRATION SUCCESS    username: {esername}   password: {eserpass}    IP Address: {visitor_ip_address}")
-                return redirect(url_for('index'))
+            ref = db.reference('/userAccounts')
+            userAccounts = ref.get()
+            if esername not in userAccounts:
+                if eserpass == eserpass2:
+                    ref.update({
+                        esername: {
+                            'firstname': eserfname,
+                            'lastname': eserlname,
+                            'usermail': esermail,
+                            'usertel': esertel,
+                            'username': esername,
+                            'userpass': eserpass,
+                            'profile_url': profile_url,
+                            'registerDate&Time': currentDateTime(),
+                            'ip': request.remote_addr
+                        }
+                    })
+                    session['message'] = "You're now registered " +esername+ " please login"
+                    visitor_ip_address = request.remote_addr
+                    logging.info(f"REGISTRATION SUCCESS    username: {esername}   password: {eserpass}    IP Address: {visitor_ip_address}")
+                    return redirect(url_for('index'))
 
+                else:
+                    error = "Passwords don't match, please repeat your password again"
+                    return render_template("register.html", error=error)
+                    
             else:
-                error = "Passwords don't match, please repeat your password again"
+                error = "Username " + esername + " is already taken"
                 return render_template("register.html", error=error)
-                
-        else:
-            error = "Username " + esername + " is already taken"
-            return render_template("register.html", error=error)
 
-    return render_template("register.html")
+        return render_template("register.html")
 
 
 
