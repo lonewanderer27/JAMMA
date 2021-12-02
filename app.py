@@ -48,6 +48,7 @@ def index():
     if session.get('logged_in'):
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
+        usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'featured'
         return render_template(
@@ -55,6 +56,7 @@ def index():
         jammaLink=jammaLink, 
         username=username, 
         profile_url=profile_url, 
+        usermail=usermail,
         active_category=active_category)
     else:
         return redirect(url_for('login'))
@@ -195,6 +197,7 @@ def login():
                     session['logged_in'] = True
                     session['lastuser'] = userAccounts[esername]['username']
                     session['profile_url'] = userAccounts[esername]['profile_url']
+                    session['usermail'] = userAccounts[esername]['usermail']
 
                     visitor_ip_address = request.remote_addr
                     logging.info(f"LOGIN SUCCESS    username: {esername}   password: {eserpass}    IP Address: {visitor_ip_address}")
@@ -341,7 +344,14 @@ def register():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
+    session['message'] = None
     return redirect(url_for('index'))
+
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return render_template('404.html'), 404
 
 
 import admin_routes
