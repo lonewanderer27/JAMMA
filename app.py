@@ -70,6 +70,7 @@ def allproducts():
             pass
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
+        usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'allproducts'
         ref = db.reference('/products')
@@ -78,6 +79,7 @@ def allproducts():
             "allproducts.html", 
             jammaLink=jammaLink, 
             username=username, 
+            usermail=usermail,
             profile_url=profile_url, 
             active_category=active_category,
             products=products,
@@ -95,6 +97,7 @@ def smartwatch():
             pass
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
+        usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'smartwatch'
         ref = db.reference('/products')
@@ -107,6 +110,7 @@ def smartwatch():
             "smartwatch.html", 
             jammaLink=jammaLink, 
             username=username, 
+            usermail=usermail,
             profile_url=profile_url, 
             active_category=active_category,
             products=products,
@@ -136,6 +140,7 @@ def earphone():
             pass
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
+        usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'earphone'
         ref = db.reference('/products')
@@ -148,6 +153,7 @@ def earphone():
             "earphone.html", 
             jammaLink=jammaLink, 
             username=username, 
+            usermail=usermail,
             profile_url=profile_url, 
             active_category=active_category,
             products=products,
@@ -165,12 +171,14 @@ def about():
             pass
         username = session.get('lastuser')
         profile_url = session.get('profile_url')
+        usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'about'
         return render_template(
             "about.html", 
             jammaLink=jammaLink, 
-            username=username, 
+            username=username,
+            usermail=usermail,
             profile_url=profile_url, 
             active_category=active_category)
 
