@@ -97,6 +97,10 @@ def smartwatch():
         active_category = 'smartwatch'
         ref = db.reference('/products')
         products = ref.get()
+
+        #Removes non-earphone products in products dictionary
+        products = filterproducts(products, 'smartwatch')
+
         return render_template(
             "smartwatch.html", 
             jammaLink=jammaLink, 
@@ -111,6 +115,18 @@ def smartwatch():
 
 
 
+
+def filterproducts(products, category):
+    products_temp = {}
+    for product in products:
+        if products[product]['productCategory'] == category:
+            products_temp[product] = products[product]
+    products = products_temp
+    return products
+        
+
+
+
 @app.route("/earphone", methods=['GET', 'POST'])
 def earphone():
     if session.get('logged_in'):
@@ -122,6 +138,10 @@ def earphone():
         active_category = 'earphone'
         ref = db.reference('/products')
         products = ref.get()
+
+        #Removes non-earphone products in products dictionary, that is going to be passed to the html template
+        products = filterproducts(products, 'earphone')
+
         return render_template(
             "earphone.html", 
             jammaLink=jammaLink, 
