@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
     <link rel="stylesheet" href="static/navigation.css">
-    <title>JAMMA</title>
+    <title>JAMMA - All Products</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
@@ -36,9 +36,9 @@
         <div class="w3-row w3-center">
             {% for product in column %}
             <div class="w3-quarter">
-                <div class="w3-card-4 w3-margin w3-centered w3-round-large">
+                <div class="w3-card-4 w3-margin w3-centered w3-border w3-round" style="height:400px">
                     <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
-                    <div class="w3-round-large w3-display-container w3-pale-yellow">
+                    <div class="w3-display-container w3-pale-yellow w3-round">
                         <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
                         <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
                         <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
@@ -60,9 +60,9 @@
         <div class="w3-row w3-center">
             {% for product in column %}
             <div class="w3-half">
-                <div class="w3-card-4 w3-margin w3-centered w3-round-large">
+                <div class="w3-card-4 w3-margin w3-centered w3-border w3-round" style="height:400px">
                     <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
-                    <div class="w3-center w3-round-large w3-display-container w3-pale-yellow">
+                    <div class="w3-display-container w3-pale-yellow w3-round">
                         <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
                         <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
                         <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
