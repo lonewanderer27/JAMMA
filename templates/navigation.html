@@ -1,4 +1,36 @@
 {% block body %}
+    <!-- Profile Modal -->
+
+    <div id="UserProfileModal" class="w3-modal">
+        <div class="w3-modal-content w3-animate-right w3-flat-midnight-blue" style="width:400px">
+            <header class="w3-container"> 
+                <span onclick="closeUserProfileModal()" 
+                class="w3-button w3-display-topright">&times;</span>
+                <div class="w3-row">
+                    <div class="w3-col" style="width:90px">
+                        <img src="{{profile_url}}" width="65px" class="w3-margin w3-circle">
+                    </div>
+                    <section class="w3-rest w3-container w3-margin">
+                        <span class="w3-large">{{username}}</span><br>
+                        <span>{{usermail}}</span>
+                    </section>
+                </div>
+            </header>
+            
+            <div class="w3-container w3-center w3-flat-wet-asphalt">
+                <p onclick="notyetimplemented()" class="w3-btn w3-bar-item">Manage My Profile</p>
+                <p onclick="notyetimplemented()" class="w3-btn w3-bar-item">My Orders</p>
+            </div>
+            
+            <a href="/logout">
+                <button class="w3-button w3-block w3-flat-alizarin">Log Out</button>
+            </a>
+        
+        </div>
+    </div>
+
+
+
     <!-- Top Bar for Wide Screen -->
     <div class="w3-row w3-hide-medium w3-hide-small w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
         <div class="w3-quarter w3-container">
@@ -7,22 +39,24 @@
         </div>
 
         <div class="w3-half w3-container w3-center">
-          <a href="playground.html"><img src="{{url_for('static', filename='slogan with motto.png')}}" height="60px" alt="" id="Slogan"></a>
+          <a href="#"><img src="{{url_for('static', filename='slogan with motto.png')}}" height="60px" alt="" id="Slogan"></a>
         </div>
 
         <div class="w3-rest w3-container w3-right">
             {% if profile_url %}
-                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-round-xxlarge">
+                <img onclick="openUserProfileModal()" src="{{profile_url}}" alt="" height="55px" class="w3-round-xxlarge">
             {% else %}
-                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px">
+                <!-- <img onclick="openUserProfileModal()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px"> -->
             {% endif %}
         </div>
 
         <div class="w3-rest w3-container w3-right">
-            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px">
+            <img onclick="notyetimplemented()" src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px">
         </div>
 
     </div>
+
+
 
     <!-- Top Bar for Medium Screen -->
     <div class="w3-row w3-hide-large w3-hide-small w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
@@ -34,14 +68,16 @@
 
         <div class="w3-rest w3-container">
             {% if profile_url %}
-                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
+                <img onclick="openUserProfileModal()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
             {% else %}
-                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right">
+                <!-- <img onclick="openUserProfileModal()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right"> -->
             {% endif %}
-            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
+            <img onclick="notyetimplemented()"  src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
             
         </div>
     </div>
+
+
 
     <!-- Top Bar for Small Screen -->
     <div class="w3-row w3-hide-large w3-hide-medium w3-top top-bar" style="padding-top:10px;padding-bottom:10px;background:#252a37">
@@ -49,13 +85,15 @@
             <img src="{{url_for('static', filename='Logo Only.png')}}" height="55px" alt="" class="w3-left" onclick="sidebar_Open()" id="Logo">
 
             {% if profile_url %}
-                <img onclick="openLogin()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
+                <img onclick="openUserProfileModal()" src="{{profile_url}}" alt="" height="55px" class="w3-right w3-round-xxlarge">
             {% else %}
-                <img onclick="openLogin()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right">
+                <!-- <img onclick="openUserProfileModal()" src="{{url_for('static', filename='Profile Icon.png')}}" alt="" height="55px" class="w3-right"> -->
             {% endif %}
-            <img src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
+            <img onclick="notyetimplemented()"  src="{{url_for('static', filename='Shopping Cart Icon.png')}}" alt="" height="55px" class="w3-right w3-margin-right">
         </div>
     </div>
+
+
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;padding-top:25px;background:#252a37" id="Sidebar">
@@ -134,21 +172,32 @@
         </a>
     </div>
 
-    <!-- Overlay -->
+
+
+    <!-- Sidebar Overlay -->
     <div class="w3-overlay w3-animate-opacity" onclick="sidebar_Close()" style="cursor:pointer;margin-left:230px;" id="overlay"></div>
 {% endblock %}
 
+
+
+
+
+
+
+
 {% block javascript %}
     <script>
-        function openLogin() {
-            document.getElementById('loginModal').style.display='block';
-            document.getElementById('Slogan').style.display='none'
+        function openUserProfileModal() {
+            document.getElementById('UserProfileModal').style.display='block';
 
         }
 
-        function closeLogin() {
-            document.getElementById('loginModal').style.display='none'
-            document.getElementById('Slogan').style.display=''
+        function closeUserProfileModal() {
+            document.getElementById('UserProfileModal').style.display='none'
+        }
+
+        function notyetimplemented() {
+            alert("Coming soon 😊");
         }
 
         /* Script of the Sidebar and Overlay */

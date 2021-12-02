@@ -23,7 +23,7 @@
 {% block body %}
 
     <div class="w3-container w3-margin w3-hide-small w3-padding-48">
-        <div class="w3-container w3-round w3-flat-midnight-blue" style="width:60%;margin:auto;">
+        <div class="w3-container w3-round w3-flat-midnight-blue w3-card-2" style="width:60%;margin:auto;">
 
             <div class="w3-center"><br>
             <img src="{{url_for('static', filename='slogan with motto.png')}}" alt="Avatar" style="width:50%" class="w3-margin">
@@ -51,7 +51,7 @@
                 <button class="w3-button w3-block w3-yellow w3-section w3-padding w3-round" type="submit">Login</button>
 
                 <span class="w3-right w3-padding" style="position:relative"><a href="/preregister">Register if you don't have an account yet!</a></span>
-                <span class=" w3-right w3-padding" style="position:relative"><a href="#">Forgot password?</a></span>
+                <span class=" w3-right w3-padding" onclick="notyetimplemented()" style="position:relative"><a href="#">Forgot password?</a></span>
             </div>
             </form>            
             </div>
@@ -92,7 +92,7 @@
                     <button class="w3-button w3-block w3-yellow w3-section w3-padding w3-round" type="submit">Login</button>
 
                     <span class="w3-right w3-padding" style="position:relative"><a href="/preregister">Register if you don't have an account yet!</a></span>
-                    <span class=" w3-right w3-padding" style="position:relative"><a href="#">Forgot password?</a></span>
+                    <span class=" w3-right w3-padding" onclick="notyetimplemented()" style="position:relative"><a href="#">Forgot password?</a></span>
                 </div>
             </form>            
         </div>
