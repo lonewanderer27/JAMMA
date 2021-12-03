@@ -197,6 +197,9 @@
             {% endfor %}
             </div>
 
+            <!-- This "Best Sellers" view becomes visible when the UI is in a medium to small sized screen -->
+            <!-- It displays two per row of items to prevent text overlapping -->
+
             <div class="w3-row w3-hide-large">
                 {% for row in sorted_productsSales | batch (2) %}
                     {% for product in row %}
@@ -252,10 +255,13 @@
                 </div>
             </div>
 
+
+            <!-- This "New Products" view becomes visible when the UI is in a medium to small sized screen -->
+            <!-- It displays two per row of items to prevent text overlapping -->
             <div class="w3-padding-32 w3-hide-large">
-                {% for column in new_products | batch (2) %}
+                {% for row in new_products | batch (2) %}
                 <div class="w3-row w3-center">
-                    {% for product in column %}
+                    {% for product in row %}
                     <div class="w3-half">
                         <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
                             <img src="{{new_products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">

@@ -32,9 +32,9 @@
             <h1 class="w3-text-white">Earphone</h1>
         </center>
 
-        {% for column in products | batch (4) %}
+        {% for row in products | batch (4) %}
         <div class="w3-row w3-center">
-            {% for product in column %}
+            {% for product in row %}
             <div class="w3-quarter">
                 <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
                     <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
@@ -56,9 +56,9 @@
             <p class="w3-text-white w3-xxlarge">Earphone</p>
         </center>
 
-        {% for column in products | batch (2) %}
+        {% for row in products | batch (2) %}
         <div class="w3-row w3-center">
-            {% for product in column %}
+            {% for product in row %}
             <div class="w3-half">
                 <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
                     <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
