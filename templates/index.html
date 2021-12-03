@@ -163,7 +163,7 @@
             </div>
         </div>
 
-        <br> <br>
+        <br>
 
         <!-- Best Sellers -->
         <div class="w3-padding-64">
@@ -181,65 +181,42 @@
                 </div>
             </div>
 
-            
-            <div class="w3-row w3-center">
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/best_selling/AfterShokz Aeropex.png" alt="Alps" style="width:90%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Aftershockz Aeropex</span></p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/best_selling/Airpods Pro.png" alt="Alps" style="width:100%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Airpods Pro</span></p>
+            <div class="w3-row w3-hide-medium w3-hide-small">
+            {% for product in sorted_productsSales %}
+                    <div class="w3-col w3-center" style="width:20%">
+                        <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:290px">
+                            <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:65%;max-width:100%;object-fit: contain;">
+                            <div class="w3-display-container w3-pale-yellow w3-round">
+                                <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
+                                <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
+                                <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                
-
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/best_selling/Powerbeats Pro.png" alt="Alps" style="width:100%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Powerbeats Pro</span></p>
-                        </div>
-                    </div>
-                </div>
+                    </div>  
+            {% endfor %}
             </div>
-            
 
-            <div class="w3-row">
-
-                <div class="w3-half w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
-                        <img src="/static/best_selling/Jabra Elite Active 75t.png" alt="Alps" style="width:80%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <a href="Jabra Elite Active 75t.html">
-                                <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Jabra Elite Active 75t</span></p>
-                            </a>
+            <div class="w3-row w3-hide-large">
+                {% for row in sorted_productsSales | batch (2) %}
+                    {% for product in row %}
+                        <div class="w3-half w3-center">
+                            <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:290px">
+                                <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:65%;max-width:100%;object-fit: contain;">
+                                <div class="w3-display-container w3-pale-yellow w3-round">
+                                    <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
+                                    <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
+                                    <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="w3-half w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
-                        <img src="/static/best_selling/Jaybird Vista.png" alt="Alps" style="width:80%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Jaybird Vista</span></p>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% endfor %}
             </div>
 
         </div>
         
-        <br> <br>
+        <br>
 
         <!-- New Products -->
         <div class="w3-padding-64">
@@ -258,61 +235,45 @@
             </div>
 
 
-            <div class="w3-row w3-center">
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/new_products/Apple Watch Series 6.png" alt="Alps" style="width:80%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Apple Watch Series 6</span></p>
+            <div class="w3-padding-32 w3-hide-medium w3-hide-small">
+                <div class="w3-row w3-center">
+                    {% for product in new_products %}
+                        <div class="w3-col" style="width:20%">
+                            <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:290px">
+                                <img src="{{new_products[product]['productImage']}}" alt="" class="w3-padding" style="height:65%;max-width:100%;object-fit: contain;">
+                                <div class="w3-display-container w3-pale-yellow w3-round">
+                                    <p class="w3-padding w3-large">{{new_products[product]['productName']}}</p> <br>
+                                    <b><span class="w3-padding w3-display-bottomleft w3-large">{{new_products[product]['productPrice']}}</span></b>
+                                    <span class="w3-padding w3-display-bottomright">{{new_products[product]['quantitySold']}} sold</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/new_products/Coros Pace 2.png" alt="Alps" style="width:80%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Coros Pace 2</span></p>
-                        </div>
-                    </div>
-                </div>
-                
-                
-
-                <div class="w3-third w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge" style="width:100%">
-                        <img src="/static/new_products/Garmin Forerunner 245 Music.png" alt="Alps" style="width:80%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Garmin Forerunner 245 Music</span></p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            
 
-            <div class="w3-row">
-
-                <div class="w3-half w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
-                        <img src="/static/new_products/Huawei GT 2e.png" alt="Alps" style="width:75%" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow">Huawei GT 2e</span></p>
+            <div class="w3-padding-32 w3-hide-large">
+                {% for column in new_products | batch (2) %}
+                <div class="w3-row w3-center">
+                    {% for product in column %}
+                    <div class="w3-half">
+                        <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
+                            <img src="{{new_products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
+                            <div class="w3-display-container w3-pale-yellow w3-round">
+                                <p class="w3-padding w3-large">{{new_products[product]['productName']}}</p> <br>
+                                <b><span class="w3-padding w3-display-bottomleft w3-large">{{new_products[product]['productPrice']}}</span></b>
+                                <span class="w3-padding w3-display-bottomright">{{new_products[product]['quantitySold']}} sold</span>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-
-                <div class="w3-half w3-container w3-mobile w3-padding-24">
-                    <div class="w3-card w3-hover-shadow w3-round-xxlarge w3-center" style="width:100%">
-                        <img src="/static/new_products/Withings Steel HR.png" alt="Alps" style="width:45%;" loading="lazy">
-                        <div class="w3-container w3-center">
-                            <p><span class="w3-tag w3-yellow w3-large w3-round-xlarge w3-hover-shadow"">Withings Stell HR</span></p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+
         </div>
 
-        <br> <br> <br> 
+        <br> 
 
         <!-- Testimonials -->
         <div style="background-color: black;" class="testimonials w3-padding-64">

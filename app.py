@@ -6,6 +6,7 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import logging
+from operator import itemgetter  
 
 
 # Fetch the service account key JSON file contents
@@ -51,13 +52,32 @@ def index():
         usermail = session.get('usermail')
         jammaLink = "https://jammacomments.herokuapp.com/?"+"username="+username+"&profile_url="+profile_url
         active_category = 'featured'
+
+        ref = db.reference('/products')
+        new_products = ref.order_by_key().limit_to_last(5).get()
+        products = ref.get()
+
+        ref = db.reference('productsSales')
+        productsSales = ref.get()
+        sorted_productsSales = {}
+        counter = 0
+        for key, value in sorted(productsSales.items(), key = itemgetter(1), reverse = True):
+            counter += 1
+            if counter < 6:
+                sorted_productsSales[key] = value
+        
         return render_template(
             "index.html", 
         jammaLink=jammaLink, 
         username=username, 
         profile_url=profile_url, 
         usermail=usermail,
-        active_category=active_category)
+        active_category=active_category,
+        new_products=new_products,
+        products=products,
+        sorted_productsSales=sorted_productsSales,
+        )
+        
     else:
         return redirect(url_for('login'))
 
