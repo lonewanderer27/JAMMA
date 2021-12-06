@@ -1,5 +1,6 @@
 {
     "name": "jamma-site",
+    "logo": "http://jamma-site2.herokuapp.com/static/Logo%20Only.png",
     "description": "a shopping website that runs on flask web framework",
     "repository": "https://github.com/lonewanderer27/login-system-test",
     "keywords": ["python3", "flask", "dynamic"]
