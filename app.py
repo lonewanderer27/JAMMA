@@ -25,6 +25,15 @@ app.config.update(
     TESTING = True,
 )
 
+
+#for load testing purposes
+@app.route("/loaderio-8f82c94de57fbc8606728068c3bba183/", methods=['GET'])
+def loaderio():
+    return "loaderio-8f82c94de57fbc8606728068c3bba183"
+
+
+
+
 @app.route("/", methods=['GET'])
 def home():
     if session.get('logged_in'):
