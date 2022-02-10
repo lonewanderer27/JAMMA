@@ -1,4 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
+from flask_talisman import Talisman
 import os, time
 import firebase_admin
 from firebase_admin import credentials, db, storage
@@ -24,18 +25,6 @@ app.config.update(
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'},
     TESTING = True,
 )
-
-
-@app.before_request
-def before_request():
-    if app.env == "development":
-        return
-    if request.is_secure:
-        return
-
-    url = request.url.replace("http://", "https://", 1)
-    code = 301
-    return redirect(url, code=code)
 
 #for load testing purposes
 @app.route("/loaderio-8f82c94de57fbc8606728068c3bba183/", methods=['GET'])
@@ -408,4 +397,4 @@ if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    Talisman(app.run(host='0.0.0.0', port=port))
