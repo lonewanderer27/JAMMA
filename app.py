@@ -397,4 +397,4 @@ if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    Talisman(app.run(host='0.0.0.0', port=port))
+    Talisman(app.run(host='0.0.0.0', port=port), force_https=True, force_https_permanent=True)
