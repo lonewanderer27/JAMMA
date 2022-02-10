@@ -26,6 +26,17 @@ app.config.update(
 )
 
 
+@app.before_request
+def before_request():
+    if app.env == "development":
+        return
+    if request.is_secure:
+        return
+
+    url = request.url.replace("http://", "https://", 1)
+    code = 301
+    return redirect(url, code=code)
+
 #for load testing purposes
 @app.route("/loaderio-8f82c94de57fbc8606728068c3bba183/", methods=['GET'])
 def loaderio():
