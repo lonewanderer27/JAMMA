@@ -392,7 +392,7 @@ def page_not_found(e):
 
 
 # Wrap Flask app with Talisman
-Talisman(app, force_https_permanent=True)
+Talisman(app, force_https_permanent=True, content_security_policy=None)
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
