@@ -18,7 +18,7 @@
         </div>
         {% if request.endpoint != 'help_center' %}
             <div class="d-flex">
-                <a href="{{ url_for('help_center') }}">Need help?</a>
+                <a href="{{ url_for('help_center.help_center') }}">Need help?</a>
             </div>
         {% endif %}
     </div>
