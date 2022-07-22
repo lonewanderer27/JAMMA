@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <a href="{{ url_for('home_page') }}">
+                <img id="nav-logo" src="{{ url_for('static', filename='JAMMA/logo.png') }}" alt="" class="img-fluid">
+                <span class="fs-3 mx-3" id="nav-sloganText">JAMMA</span>
+            </a>
+            
+            <span class="fs-3">
+                {% if request.endpoint == 'home_page' %}
+                    Homepage
+                {% elif request.endpoint == 'help_center' %}
+                    Help Center
+                {% else %}
+                    {{ request.path.split('/')[1] | capitalize}}
+                {% endif %}
+            </span>
+        </div>
+        {% if request.endpoint != 'help_center' %}
+            <div class="d-flex">
+                <a href="{{ url_for('help_center') }}">Need help?</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

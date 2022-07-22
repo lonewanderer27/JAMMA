@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Signup - JAMMA
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <section id="root" class="container" id="signupBox">
+        <div class="row" id="rootRow">
+            <div class="row col-12 col-md-12 col-lg-5 col-xl-5" id="stepCol">
+                {%  include 'signup/partials/signup-step-indicator.html' %}
+            </div>
+            <div class="col-12 col-md-12 col-sm-12 col-lg-2 col-xl-2">
+
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 col-xl-4" id="signupCol">
+                {% include 'signup/partials/step-1.html' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

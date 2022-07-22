@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Login - JAMMA
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    <section id="root" class="container" id="loginBox">
+        <div class="row" id="rootRow">
+
+            <div class="row col-12 col-md-12 col-lg-5 col-xl-5" id="logoCol">
+                <img id="logo" class="img-fluid mx-auto" src="{{url_for('static', filename='JAMMA/logo.png')}}" alt=""> 
+                <img id="slogan" class="img-fluid mx-auto"  src="{{url_for('static', filename='JAMMA/slogan.png')}}" alt="">
+            </div>
+
+            <div class="col-12 col-md-12 col-sm-12 col-lg-2 col-xl-2">
+
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-5 col-xl-4" id="loginCol">
+                <div class="card w-100" id="loginCard">
+                    <h3 class="card-header text-center">Login</h3>
+                    
+                    <div class="card-body">
+
+                        <form action="">
+                            <div class="d-none alert alert-danger text-center" role="alert">
+                                Login Failed. Invalid Email or Password.
+                            </div>
+
+                            <div class="d-none alert alert-success text-center" role="alert">
+                                Login Success. Welcome back, Adriane!
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                                    <label for="eloginEmail" class="form-label">Email Address:</label>
+                                    <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com">
+                                </div>
+                                
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                                    <label for="loginPass" class="form-label">Password:</label>
+                                    <div class="mb-3 input-group">
+                                        <input type="password" class="form-control" id="loginPass"></input>
+                                        <span class="input-group-text bi bi-eye" id="togglePassIndicator" onclick="togglePassVisibility()"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-warning">LOGIN</button> 
+                            </div>
+                        </form>
+
+                        <div class="hstack" id="loginOptions">
+                            <a href="" id="forgotPassword" >Forgot Password</a>
+                            <a href="" id="loginUsingPhoneNum" class="ms-auto">Login with Phone Number</a>
+                        </div>
+
+                        <div class="row" id="orSeparator">
+                            <div class="col-5">
+                                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                            </div>
+                            <div class="col-2" style="text-align: center;">
+                                <span>OR</span>
+                            </div>
+                            <div class="col-5">
+                                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                            </div>
+                        </div>
+
+                        <div class="row gx-3" id="otherLoginOptions">
+                            <div class="col-12 col-sm-6 d-grid">
+                                <button type="button" class="btn btn-outline-dark" id="fbLogin">
+                                    <i class="bi bi-facebook"></i>  Facebook
+                                </button>
+                            </div>
+                            
+                            <div class="col-12 col-sm-6 d-grid">
+                                <button type="button" class="btn btn-outline-dark" id="gLogin">
+                                    <i class="bi bi-google"></i>  Google
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        New to JAMMA? <a href="{{ url_for('signup.signup') }}" id="registerLink">Signup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function togglePassVisibility(){
+            let loginPass = document.getElementById("loginPass");
+            let togglePassIndicator = document.getElementById("togglePassIndicator");
+            if (loginPass.type === "password"){
+                loginPass.type = "text";
+                togglePassIndicator.className = "input-group-text bi bi-eye-slash";
+            }
+            else {
+                loginPass.type = "password";
+                togglePassIndicator.className = "input-group-text bi bi-eye";
+            }
+        }
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,21 @@
+.navbar {
+    padding: 20px 150px;
+}
+
+.navbar-brand>a {
+    text-decoration: none;
+}
+
+
+.navbar-brand, .navbar {
+    color: white !important;
+}
+
+#nav-logo {
+    height: 50px;
+    width: auto;
+}
+
+#nav-sloganText {
+    color: #fef668;
+}

@@ -1,0 +1,75 @@
+body {
+    background-color: #252a37;
+}
+
+#root {
+    width: 100%;
+    display: flex;
+    padding: 7% 0;
+    justify-content: center;
+}
+
+#rootRow {
+    width: 100%;
+    justify-content: center;
+}
+
+.col-step {
+    display: flex;
+    align-items: center;
+}
+
+.step-indicator {
+    font-size: 3vw;
+    margin: 10px 20px;
+    color: white;
+}
+
+.step-description {
+    color: white;
+}
+
+#stepCol {
+    align-items: center;
+    justify-content:right;
+    padding: 2% 0;
+}
+
+#signupCard {
+    width: 100%;
+}
+
+
+#orSeparator {
+    margin: 10px 0;
+}
+
+#signupAgreement {
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.bi-check-circle-fill {
+    font-size: 10vw;
+    color: green;
+    margin: 10px;
+}
+
+#resendOTP {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}

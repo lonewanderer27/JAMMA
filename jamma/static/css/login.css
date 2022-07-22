@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body {
+    background-color: #252a37;
+}
+
+#root {
+    width: 100%;
+    display: flex;
+    padding: 7% 0;
+    justify-content: center;
+}
+
+#rootRow {
+    width: 100%;
+    justify-content: center;
+}
+
+#logo {
+    max-width: 150px;
+    height: auto;
+    margin: 20px 0;
+}
+
+#logoCol {
+    align-items: center;
+    justify-content: center;
+    padding: 5% 0;
+}
+
+#slogan {
+    max-width: 400px;
+    height: auto;
+}
+
+#loginCard {
+    width: 100%;
+}
+
+#loginOptions {
+    margin: 10px 0;
+}
+
+#orSeparator {
+    margin: 10px 0;
+}
+
+#otherLoginOptions {
+    margin: 0;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .navbar {
+        padding: 10px 25px;
+    }
+}

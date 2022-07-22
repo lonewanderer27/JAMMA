@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+footer>.row {
+    justify-content: center;
+}
+
+footer {
+    color: white !important;
+    text-align: center;
+}
+
+.footerRow {
+    justify-content: center;
+}
+
+.aboutDescription {
+    text-align: justify;
+}
+
+/* .footer-icon {
+    height: 3rem;
+} */
+
+.jamma-link {
+    display: block;
+    margin: 5px;
+}
+
+.vr-footer {
+    margin: 0 20px;
+    width: 2px;
+}

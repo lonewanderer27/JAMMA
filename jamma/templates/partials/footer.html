@@ -1,0 +1,80 @@
+<footer class="bg-dark p-5">
+    <div class="container">
+        <div class="row g-5 px-sm-0 footerRow">
+            <div class="col-md-6 col-xl-4">
+                <span class="fs-5" class="aboutTitle">About JAMMA</span><br>
+                <p class="aboutDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at augue volutpat, placerat turpis non,
+                    sagittis purus. Integer at massa ante. Morbi vulputate purus non justo efficitur interdum. Proin lorem
+                    est, facilisis at tortor eu, cursus egestas nisi. Pellentesque congue, est eget sodales egestas, nisi
+                    mauris gravida lorem, eget aliquet nisl est at ligula. Pellentesque eu eros id justo volutpat maximus a
+                    ac tellus. Suspendisse rutrum mauris at rutrum dapibus.</p>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="fs-5" class="aboutTitle">PAYMENT</span><br>
+                        <div class="brandsDiv row">
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/stripe.png') }}" alt="">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/GCash.png') }}" alt="">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/paypal.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <span class="fs-5" class="aboutTitle">DELIVERY</span><br>
+                        <div class="brandsDiv row">
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/stripe.png') }}" alt="">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/GCash.png') }}" alt="">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid footer-icon" src="{{ url_for('static', filename='brand_logos/paypal.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="col-md-6 col-xl-2">
+                <span class="fs-5" class="aboutTitle">Customer Service</span><br>
+                <div class="row">
+                    <div class="col-6 col-md-6 col-lg-6 col-xl-12">
+                        <a href="" class="jamma-link">Help Centre</a>
+                        <a href="" class="jamma-link">Payment Methods</a>
+                        <a href="" class="jamma-link">JAMMA Pay</a>
+                        <a href="" class="jamma-link">Order Tracking</a>
+                    </div>
+                    <div class="col-6 col-md-6 col-lg-6 col-xl-12">
+                        <a href="" class="jamma-link">Free Shipping</a>
+                        <a href="" class="jamma-link">Return & Refund</a>
+                        <a href="" class="jamma-link">Overseas Product</a>
+                        <a href="" class="jamma-link">JAMMA Guarantee</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-2">
+                <span class="fs-5" class="aboutTitle">JAMMA</span><br>
+                <a href="{{ url_for('blog') }}" class="jamma-link">JAMMA Blog</a>
+                <a href="{{ url_for('careers') }}" class="jamma-link">JAMMA Careers</a>
+                <a href="{{ url_for('legal.privacy_policy') }}" class="jamma-link">Privacy Policy</a>
+                <a href="{{ url_for('seller_centre.seller_centre') }}" class="jamma-link">Seller Centre</a>
+            </div>
+        </div>
+
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+        <span>© 2022 JAMMA. All Rights Reserved.</span>
+        <div class="vr vr-footer"></div>
+        <span>Country & Region: Philippines</span>
+        
+    </div>
+</footer>

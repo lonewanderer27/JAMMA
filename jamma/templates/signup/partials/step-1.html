@@ -1,0 +1,125 @@
+<div class="card w-100" id="signupCard">
+    <h3 class="card-header text-center" id="signupCardTitle">Signup</h3>
+
+    <div id="before-verify">
+        <div class="card-body">
+
+            <form action="">
+                <input type="hidden" name="endpoint" id="endpoint" value="{{ endpoint }}">
+                <input type="hidden" name="next" id="next" value="{{ next }}">
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="signupPhoneNum" class="form-label">Phone Number:</label>
+                        <input type="phone" class="form-control signupPhoneNum" id="signupPhoneNum" placeholder="09229465782" required>
+                    </div>
+                </div>
+
+                
+                <div class="d-grid">
+                    <button type="button" class="btn btn-warning" id="verifyPhoneNum">
+                        NEXT
+                        <div class="spinner-border spinner-border-sm m-1 float-end" style="display:none" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button> 
+                </div>
+            </form>
+    
+            <div class="row" id="orSeparator">
+                <div class="col-5">
+                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                </div>
+                <div class="col-2" style="text-align: center;">
+                    <span>OR</span>
+                </div>
+                <div class="col-5">
+                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                </div>
+            </div>
+    
+            <div class="row gx-3" id="otherLoginOptions">
+                <div class="col-12 col-sm-6 d-grid">
+                    <button type="button" class="btn btn-outline-dark" id="fbLogin">
+                        <i class="bi bi-facebook"></i>  Facebook
+                    </button>
+                </div>
+                
+                <div class="col-12 col-sm-6 d-grid">
+                    <button type="button" class="btn btn-outline-dark" id="gLogin">
+                        <i class="bi bi-google"></i>  Google
+                    </button>
+                </div>
+            </div>
+    
+            <div id="signupAgreement">
+                <span>By signing up, you agree to JAMMA's</span> <a href="{{ url_for('legal.terms_of_service') }}">Terms of Service</a> and <a href="{{ url_for('legal.privacy_policy') }}">Privacy Policy</a>
+            </div>
+        </div>
+    
+        <div class="card-footer text-center">
+            Have an account? <a href="{{ url_for('login.login') }}" id="loginLink">Login</a>
+        </div>
+    </div>
+    
+
+    <div id="during-verify" style="display: none">
+        <div class="card-body text-center">
+            <form action="">
+                <input type="hidden" name="signup_otp_endpoint" id="signup_otp_endpoint" value="{{url_for('signup.otp')}}">
+                <div>
+                    <span>Your verification code has been by SMS to</span><br>
+                    <p class="fw-bold fs-5 signupPhoneNum"></p>
+                </div>
+                
+                <div class="row my-5 mx-2" id=" codeInputRow">
+                    <div class="col-3">
+                      <input type="tel" class="form-control fs-1 text-center otpInput" id="otp-1"  min="0" max="9" maxlength="1">
+                    </div>
+                    <div class="col-3">
+                      <input type="tel" class="form-control fs-1 text-center otpInput" id="otp-2"  min="0" max="9" maxlength="1">
+                    </div>
+                    <div class="col-3">
+                      <input type="tel" class="form-control fs-1 text-center otpInput" id="otp-3" min="0" max="9" maxlength="1">
+                    </div>
+                    <div class="col-3">
+                        <input type="tel" class="form-control fs-1 text-center otpInput" id="otp-4" min="0" max="9" maxlength="1">
+                    </div> 
+                </div>
+
+                <div class="row">
+                    <span id="message" style="display:none;">Code invalid.</span>
+                </div>
+
+                <div class="my-3">
+                    <span>Did not received the code?</span><br>
+                    <span id="resendOTP">Resend</span> or <a href="">try a different verification method</a>
+                </div>
+
+                <div class="d-grid">
+                    <button type="button" class="btn btn-warning" id="verifyOTP">
+                        <div class="m-1">
+                            VERIFY
+                        </div>
+                        <div class="spinner-border spinner-border-sm m-1"  style="display:none" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button> 
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer text-center">
+            <a href="{{ url_for('signup.signup') }}" id="signupLink">Go Back</a>
+        </div>
+    </div>
+
+
+    <div id="after-verify" style="display: none">
+        <div class="row text-center">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='/signup/js/step-1.js') }}"></script>
