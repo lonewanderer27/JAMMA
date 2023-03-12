@@ -4,3 +4,4 @@ __pycache__
 test commands.py
 poetry.lock
 .vercel
+.space
