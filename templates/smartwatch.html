@@ -1,79 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
-    <link rel="stylesheet" href="static/navigation.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://www.w3schools.com/lib/w3-colors-flat.css"
+    />
+    <link rel="stylesheet" href="static/navigation.css" />
     <title>JAMMA</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
-        p, label, button, span, input, h1 {
-            font-family: Inter;
-        }
-
-
+      p,
+      label,
+      button,
+      span,
+      input,
+      h1 {
+        font-family: Inter;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    {% include 'navigation.html' %}
-    {% block body %}
-    {% endblock %}
+  <body>
+    {% include 'navigation.html' %} {% block body %} {% endblock %}
 
-    <br> <br> <br>
+    <br />
+    <br />
+    <br />
 
     <div class="w3-padding-32 w3-hide-medium w3-hide-small">
-        <center>
-            <h1 class="w3-text-white">Smartwatch</h1>
-        </center>
+      <center>
+        <h1 class="w3-text-white">Smartwatch</h1>
+      </center>
 
-        {% for row in products | batch (4) %}
-        <div class="w3-row w3-center">
-            {% for product in row %}
-            <div class="w3-quarter">
-                <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
-                    <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
-                    <div class="w3-display-container w3-pale-yellow w3-round">
-                        <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
-                        <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
-                        <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
-                    </div>
-                </div>
+      {% for row in products | batch (4) %}
+      <div class="w3-row w3-center">
+        {% for product in row %}
+        <div class="w3-quarter">
+          <div
+            class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2"
+            style="height: 400px"
+          >
+            <img
+              src="{{products[product]['productImage']}}"
+              alt=""
+              class="w3-padding"
+              style="height: 75%; max-width: 100%; object-fit: contain"
+            />
+            <div class="w3-display-container w3-pale-yellow w3-round">
+              <p class="w3-padding w3-large">
+                {{products[product]['productName']}}
+              </p>
+              <br />
+              <b
+                ><span class="w3-padding w3-display-bottomleft w3-large"
+                  >{{products[product]['productPrice']}}</span
+                ></b
+              >
+              <span class="w3-padding w3-display-bottomright"
+                >{{products[product]['quantitySold']}} sold</span
+              >
             </div>
-            {% endfor %}
+          </div>
         </div>
         {% endfor %}
+      </div>
+      {% endfor %}
     </div>
 
     <div class="w3-padding-32 w3-hide-large">
+      <center>
+        <h1 class="w3-text-white">Smartwatch</h1>
+      </center>
 
-        <center>
-            <h1 class="w3-text-white">Smartwatch</h1>
-        </center>
-
-        {% for row in products | batch (2) %}
-        <div class="w3-row w3-center">
-            {% for product in row %}
-            <div class="w3-half">
-                <div class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2" style="height:400px">
-                    <img src="{{products[product]['productImage']}}" alt="" class="w3-padding" style="height:75%;max-width:100%;object-fit: contain;">
-                    <div class="w3-display-container w3-pale-yellow w3-round">
-                        <p class="w3-padding w3-large">{{products[product]['productName']}}</p> <br>
-                        <b><span class="w3-padding w3-display-bottomleft w3-large">{{products[product]['productPrice']}}</span></b>
-                        <span class="w3-padding w3-display-bottomright">{{products[product]['quantitySold']}} sold</span>
-                    </div>
-                </div>
+      {% for row in products | batch (2) %}
+      <div class="w3-row w3-center">
+        {% for product in row %}
+        <div class="w3-half">
+          <div
+            class="w3-hover-shadow w3-margin w3-centered w3-round w3-card-2"
+            style="height: 400px"
+          >
+            <img
+              src="{{products[product]['productImage']}}"
+              alt=""
+              class="w3-padding"
+              style="height: 75%; max-width: 100%; object-fit: contain"
+            />
+            <div class="w3-display-container w3-pale-yellow w3-round">
+              <p class="w3-padding w3-large">
+                {{products[product]['productName']}}
+              </p>
+              <br />
+              <b
+                ><span class="w3-padding w3-display-bottomleft w3-large"
+                  >{{products[product]['productPrice']}}</span
+                ></b
+              >
+              <span class="w3-padding w3-display-bottomright"
+                >{{products[product]['quantitySold']}} sold</span
+              >
             </div>
-            {% endfor %}
+          </div>
         </div>
         {% endfor %}
+      </div>
+      {% endfor %}
     </div>
-    
-
-</body>
+  </body>
 </html>
