@@ -1,5 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, url_for
-from flask_talisman import Talisman
+from flask import Flask, redirect, render_template, request, session, abort, jsonify, url_for
 import os, time
 import firebase_admin
 from firebase_admin import credentials, db, storage
@@ -7,11 +6,26 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import logging
+import json
 from operator import itemgetter  
 
+print("Initializing Firebase Admin SDK...")
+
+cred_dict = {   
+    "type": os.environ.get("GOOGLE_PROJECT_TYPE"),
+    "project_id": os.environ.get("GOOGLE_PROJECT_ID"),
+    "private_key_id": os.environ.get("GOOGLE_PROJECT_PRIVATE_KEY_ID"),
+    "private_key": os.environ.get("GOOGLE_PROJECT_PRIVATE_KEY").replace(r'\n', '\n'),
+    "client_email": os.environ.get("GOOGLE_PROJECT_CLIENT_EMAIL"),
+    "client_id": os.environ.get("GOOGLE_PROJECT_CLIENT_ID"),
+    "auth_uri": os.environ.get("GOOGLE_PROJECT_AUTH_URI"),
+    "token_uri": os.environ.get("GOOGLE_PROJECT_TOKEN_URI"),
+    "auth_provider_x509_cert_url": os.environ.get("GOOGLE_PROJECT_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.environ.get("GOOGLE_PROJECT_CLIENT_X509_CERT_URL")
+}
 
 # Fetch the service account key JSON file contents
-cred = credentials.Certificate('jamma-firebase-adminsdk-credentials.json')
+cred = credentials.Certificate(cred_dict)
 
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(cred, {
@@ -392,7 +406,6 @@ def page_not_found(e):
 
 
 # Wrap Flask app with Talisman
-Talisman(app, force_https_permanent=True, content_security_policy=None)
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)

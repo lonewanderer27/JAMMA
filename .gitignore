@@ -1,4 +1,6 @@
 env
+.env
 __pycache__
 test commands.py
 poetry.lock
+.vercel
